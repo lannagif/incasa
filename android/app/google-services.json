@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "689623945179",
+    "firebase_url": "https://incasa-iot.firebaseio.com",
+    "project_id": "incasa-iot",
+    "storage_bucket": "incasa-iot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689623945179:android:098d71598f73494545a1fe",
+        "android_client_info": {
+          "package_name": "com.lanna.incasa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689623945179-ldrukrj1vtkrm900ch85borjvm1a7rev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lanna.incasa",
+            "certificate_hash": "9e3eb094f5dbff815b1ab9cc294b733d931ea8ee"
+          }
+        },
+        {
+          "client_id": "689623945179-ieul7oi8gk05qc8h6o5lrne3q6qp975s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh3-3Vy91QnJsSJJdrJ06jsuaJsYOSSEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689623945179-ieul7oi8gk05qc8h6o5lrne3q6qp975s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
