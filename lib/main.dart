@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:incasa/app/telas/pre_login_pg.dart';
-import 'package:provider/provider.dart';
-import 'package:incasa/app/telas/home_pg.dart';
+//import 'package:provider/provider.dart';
 
 
 
