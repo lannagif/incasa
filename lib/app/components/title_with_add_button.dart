@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
+import 'package:incasa/app/telas/add_comodos_pg.dart';
 
 
 class TitleWithAdd extends StatelessWidget {
@@ -25,7 +26,12 @@ class TitleWithAdd extends StatelessWidget {
             size: 20.0,
             color: kPrimaryColor,
           ),
-          onPressed: press,
+          onPressed: (){
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddComodo()),
+    );
+    },
           shape: CircleBorder(),
         ),
       ],

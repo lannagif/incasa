@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:incasa/app/servicos/autenticacao.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:incasa/app/components/const.dart';
 
 class LoginPg extends StatefulWidget {

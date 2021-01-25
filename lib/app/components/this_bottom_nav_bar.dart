@@ -48,8 +48,13 @@ class ThisBottomNavBar extends StatelessWidget {
   }
 }
 
+/*
 AppBar buildAppBar(){
   return AppBar(
     elevation: 0,
+    iconTheme: IconThemeData(
+        color: kPrimaryColor
+    ),
   );
 }
+*/

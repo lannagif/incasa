@@ -1,105 +1,179 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
+import 'package:incasa/app/telas/account_pg.dart';
+//import 'package:incasa/app/components/text_field.dart';
 
-class HeaderToAccount extends StatelessWidget {
+
+
+class HeaderToAccount extends StatefulWidget {
   const HeaderToAccount({
     Key key,
     @required this.size,
+    @required this.page
   }) : super(key: key);
 
   final Size size;
+  final int page;
 
   @override
+  _HeaderToAccountState createState() => _HeaderToAccountState();
+}
 
+class _HeaderToAccountState extends State<HeaderToAccount> {
   Widget build(BuildContext context) {
-    return Container(
-      // Ocupa 10% da tela
-      height: size.height*0.1,
-      width: size.width,
-      color: kBackgroundColor,
+    return Material(
+      child: SafeArea(
+        child: Hero(
+          tag: 'accountPg',
+          child: Container(
+            // Ocupa 15% da tela
+            height: widget.size.height*0.15,
+            width: widget.size.width,
+            color: kBackgroundColor,
 
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: size.height * 0.12,
-            decoration: BoxDecoration(
-              color: kPrimaryColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(36),
-                bottomRight: Radius.circular(36),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  offset: Offset(0,10),
-                  blurRadius: 40,
-                  color: kPrimaryColor.withOpacity(0.8),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      //margin: EdgeInsets.symmetric(vertical: kDefPadding),
-                      child: MaterialButton(
-                        child: Icon(
-                          Icons.tag_faces,
-                          size: 50.0,
-                      ),
-                        onPressed: () => VoidCallback,
-                        shape: CircleBorder(),
-                      ),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  height: widget.size.height * 0.12,
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(36),
+                      bottomRight: Radius.circular(36),
                     ),
-                    SizedBox(width: 2.0,),
-                    Container(
-                      //margin: EdgeInsets.only(left: kDefPadding),
-                      child: Text(
-                        'Olá, Anna!',
-                        style: Theme.of(context).textTheme.headline5.copyWith(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0,10),
+                        blurRadius: 40,
+                        color: kPrimaryColor.withOpacity(0.8),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Column(
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              //fit: FlexFit.loose,
+                              child: Container(
+                                //margin: EdgeInsets.symmetric(vertical: kDefPadding),
+                                child: MaterialButton(
+                                  child: Icon(
+                                    Icons.tag_faces,
+                                    size: 50.0,
+                                ),
+                                  onPressed: (){
+                                    Navigator.of(context).push(
+                                      //MaterialPageRoute(builder: (context) => AccountPg(size: MediaQuery.of(context).size)),
+                                      PageRouteBuilder(
+                                        transitionDuration: Duration(milliseconds: 500),
+                                        pageBuilder: (
+                                            BuildContext context,
+                                            Animation<double> animation,
+                                            Animation<double> secondaryAnimation) {
+                                          return AccountPg();
+                                        },
+                                        transitionsBuilder: (
+                                            BuildContext context,
+                                            Animation<double> animation,
+                                            Animation<double> secondaryAnimation,
+                                            Widget child) {
+                                          return Align(
+                                            child: FadeTransition(
+                                              opacity: animation,
+                                              child: child,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  //shape: CircleBorder(),
+                                ),
+                              ),
+                            ),
+                            //SizedBox(width: 2.0,),
+                            Expanded(
+                              flex: 4,
+                              child: Container(
+                                //margin: EdgeInsets.only(left: kDefPadding),
+                                child: Text(
+                                  'Olá, ',
+                                  style: Theme.of(context).textTheme.headline5.copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            //Spacer(),
+                            Expanded(
+                              flex: 2,
+                                child: buildBullets(widget.page),
+                            ),
+                          ],
                         ),
-                      ),
+                        //Spacer(),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-                _buildBullets(),
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
-Widget _buildBullets(){
-  return Padding(
-    padding: EdgeInsets.only(left: kDefPadding*2, right: kDefPadding*2, top: kDefPadding/2),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 10),
-          width: 10,
-          height: 10,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: kTextColor,
+Widget buildBullets(int page){
+  return Material(
+    color: kPrimaryColor,
+    child: Padding(
+      padding: EdgeInsets.only(left: kDefPadding*2, right: kDefPadding*2, top: kDefPadding/2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Flexible(
+            flex: 10,
+            child: InkWell(
+              onTap: (){},
+              child: Container(
+                margin: EdgeInsets.only(right: 10),
+                width: 10,
+                height: 10,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: page == 0 ? kTextColor : Colors.yellow[100],
+                ),
+              ),
+            ),
           ),
-        ),
-        Container(
-          width: 10,
-          height: 10,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.yellow[100],
+          Flexible(
+            flex: 6,
+            child: Container(
+            width: 10,
+            height: 10,
+              decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+                color: page == 1 ? kTextColor : Colors.yellow[100],
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+
+      ),
     ),
   );
 }

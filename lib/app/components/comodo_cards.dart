@@ -130,7 +130,6 @@ class ComodoCard extends StatelessWidget {
       ),
       onTap: (){
         print('clicou');
-        press;
       },
     );
   }

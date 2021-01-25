@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:incasa/app/telas/home_pg.dart';
-import 'package:incasa/app/telas/login_pg.dart';
+//import 'package:incasa/app/telas/login_pg.dart';
+//import 'package:incasa/app/telas/login_pg.dart';
 
 
 class PreLogin extends StatefulWidget {
