@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:incasa/app/telas/add_comodos_pg.dart';
+import 'package:incasa/app/components/tipo_dispositivo.dart';
 
 
 class TitleWithAdd extends StatelessWidget {
   const TitleWithAdd({
     Key key,
     this.text,
-    this.press
+    this.press,
   }) : super(key: key);
   final String text;
   final Function press;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,22 +21,7 @@ class TitleWithAdd extends StatelessWidget {
       children: <Widget>[
         TitleUnderlined(text: text),
         Spacer(),
-        MaterialButton(
-          color: kTextColor,
-          elevation: 0,
-          child: Icon(
-            Icons.add,
-            size: 20.0,
-            color: kPrimaryColor,
-          ),
-          onPressed: (){
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddComodo()),
-    );
-    },
-          shape: CircleBorder(),
-        ),
+        AddDisp(),
       ],
     );
   }
@@ -76,3 +64,5 @@ class TitleUnderlined extends StatelessWidget {
     );
   }
 }
+
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
+import 'package:incasa/app/components/switch_on_off.dart';
 
 
 class DispositivoCards extends StatelessWidget {
@@ -14,8 +15,6 @@ class DispositivoCards extends StatelessWidget {
         DispositivoCard(
           image: 'assets/imgs/lamp.png',
           nomedispositivo: 'Lâmpada',
-          textdispositivo: 'dispositivo',
-          qtddispositivo: 1,
         ),
       ],
     );
@@ -27,13 +26,13 @@ class DispositivoCard extends StatelessWidget {
     Key key,
     this.image,
     this.nomedispositivo,
-    this.textdispositivo,
-    this.qtddispositivo,
+    //this.textdispositivo,
+    //this.qtddispositivo,
     this.press,
   }) : super(key: key);
 
-  final String image, nomedispositivo, textdispositivo;
-  final int qtddispositivo;
+  final String image, nomedispositivo; //textdispositivo;
+  //final int qtddispositivo;
   final Function press;
 
   @override
@@ -74,31 +73,25 @@ class DispositivoCard extends StatelessWidget {
                       child: Column(
                         children: [
                           Spacer(),
-                          Center(
-                            child: RichText(
-                              text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: '$nomedispositivo\n'.toUpperCase(),
-                                      style: Theme.of(context).textTheme.headline5.copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                          RichText(
+                            text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '$nomedispositivo\n'.toUpperCase(),
+                                    style: Theme.of(context).textTheme.headline5.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    TextSpan(
-                                      text: '$qtddispositivo $textdispositivo',
-                                      style: Theme.of(context).textTheme.headline6.copyWith(
-                                        color: Colors.black.withOpacity(0.5),
-                                        //fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ]
-                              ),
+                                  ),
+                                ]
                             ),
                           ),
                           Spacer(),
+                          SwitchOnOff(),
+                          Spacer(),
                         ],
-                      ),),
+                      ),
+                    ),
                   ),
                 ),
               ),
