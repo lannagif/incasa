@@ -1,48 +1,79 @@
 import 'package:flutter/material.dart';
-import 'package:incasa/app/components/body_comodos.dart';
-import 'package:incasa/app/components/body_dispositivo.dart';
+import 'package:provider/provider.dart';
+import 'package:incasa/app/components/comodos/body_comodos.dart';
+import 'package:incasa/app/components/dispositivos/body_dispositivo.dart';
 import 'package:incasa/app/components/header.dart';
+import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+//import '../components/const.dart';
+import '../telas/account_pg.dart';
 
 
 
 class HomePg extends StatefulWidget {
+
+  HomePg({Key key, @required this.auth}) : super(key: key);
+  final BaseAutenticacao auth;
 
 
   @override
   _HomePgState createState() => _HomePgState();
 }
 
-  class _HomePgState extends State<HomePg> {
+class _HomePgState extends State<HomePg> {
 
-    int index = 0;
+  double _panelHeightOpen;
 
-    @override
+  int index = 0;
+
+  @override
   Widget build(BuildContext context) {
+    _panelHeightOpen = MediaQuery.of(context).size.height*0.95;
+
+    BorderRadiusGeometry radius = BorderRadius.only(
+    bottomLeft: Radius.circular(36),
+    bottomRight: Radius.circular(36),
+    );
+
     return SafeArea(
       child: Scaffold(
         //appBar: buildAppBar(),
-        body: Column(
-          children: [
-            HeaderToAccount(size: MediaQuery.of(context).size, page: index),
-            Expanded(
-              child: PageView.builder(
-                itemCount: 2,
-                itemBuilder: (_, currentIndex){
-                  return
-                  currentIndex == 1 ? BodyDispositivos() : BodyComodos();
-                },
-                  onPageChanged: (indexPage) {
-                    this.setState(() {
-                      index = indexPage;
-                    });
-                  }
+        body: SlidingUpPanel(
+          slideDirection: SlideDirection.DOWN,
+          borderRadius: radius,
+          maxHeight: _panelHeightOpen,
+          collapsed:  HeaderToAccount(size: MediaQuery.of(context).size, page: index),
+          panelBuilder: (sc) => panel(
+            sc: sc,
+          ),
+          //panel: HeaderToAccount(size: MediaQuery.of(context).size, page: index),
+          body: Column(
+            children: [
+              //HeaderToAccount(size: MediaQuery.of(context).size, page: index),
+
+              Expanded(
+                child: PageView.builder(
+                  itemCount: 2,
+                  itemBuilder: (_, currentIndex){
+                    return
+                    currentIndex == 1 ? BodyComodos() : BodyDispositivos();
+                  },
+                    onPageChanged: (indexPage) {
+                      this.setState(() {
+                        index = indexPage;
+                      });
+                    }
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+  Widget panel({
+  @required ScrollController sc,
+  }) => AccountPg(auth: null, sc: sc,);
 }
 
 

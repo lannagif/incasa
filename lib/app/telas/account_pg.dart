@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
-import 'package:incasa/app/components/text_field.dart';
+//import 'package:incasa/app/components/text_field.dart';
+import '../servicos/autenticacao.dart';
 
 
 class AccountPg extends StatelessWidget {
@@ -8,8 +11,23 @@ class AccountPg extends StatelessWidget {
   AccountPg({
     Key key,
     this.size,
-    //@required this.page
+    @required this.auth,
+    @required this.sc
   }) : super(key: key);
+
+  final ScrollController sc;
+  final BaseAutenticacao auth;
+
+ Future<void> _signOut(BuildContext context) async {
+   try {
+     //final auth = Provider.of<BaseAutenticacao>(context, listen: false);
+     await FirebaseAuth.instance.signOut();
+     //onSignOut();
+   } catch (e) {
+     print(e.toString());
+   }
+ }
+
 
   //final Size size;
   //final int page;
@@ -18,39 +36,27 @@ class AccountPg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //controller: sc,
+    BorderRadiusGeometry radius = BorderRadius.only(
+      bottomLeft: Radius.circular(36),
+      bottomRight: Radius.circular(36),
+    );
     size = MediaQuery.of(context).size;
     return Material(
-
+      color: Colors.transparent,
       type: MaterialType.transparency,
-      child: Hero(
-        tag: 'accountPg',
-        child: SafeArea(
+      child: SafeArea(
+        child: ClipRRect(
+          borderRadius: radius,
           child: Container(
             // Ocupa 100% da tela
             height: size.height,
             width: size.width,
-            color: kBackgroundColor,
+            color: kPrimaryColor,
 
             child: Stack(
               children: <Widget>[
-                SizedBox(height: kDefPadding),
-                Container(
-                  height: size.height*0.92,
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(36),
-                      bottomRight: Radius.circular(36),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0,10),
-                        blurRadius: 40,
-                        color: kPrimaryColor.withOpacity(0.8),
-                      ),
-                    ],
-                  ),
-                ),
+                //SizedBox(height: kDefPadding),
                 Positioned(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20),
@@ -83,6 +89,56 @@ class AccountPg extends StatelessWidget {
                               ),
                             ),
                             //Texto(),
+                          ],
+                        ),
+                        SizedBox(height: 50,),
+                        Column(
+                          children: [
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text('Modo voz',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  MaterialButton(
+                                    color: kTextColor,
+                                    elevation: 0,
+                                    child: Icon(
+                                      Icons.settings_voice_sharp,
+                                      size: 20.0,
+                                      color: kPrimaryColor,
+                                    ),
+                                    shape: CircleBorder(),
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 30,),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+
+                                  //SizedBox(width: 25,),
+                                  Text('Sair do InCasa',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  MaterialButton(
+                                    color: kTextColor,
+                                    elevation: 0,
+                                    child: Icon(
+                                      Icons.logout,
+                                      size: 20.0,
+                                      color: kPrimaryColor,
+                                    ),
+                                    shape: CircleBorder(),
+                                    onPressed: () => _signOut(context),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                         //buildBullets(page),

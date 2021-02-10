@@ -35,19 +35,25 @@ class Auth implements BaseAutenticacao {
     return userCredential.user;
   }
 
+
+  /*
+         final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+         final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+         final AuthCredential credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+         final User user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+
+                     */
   @override
   Future<User> signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     final GoogleSignInAccount googleUser = await googleSignIn.signIn();
 
     if (googleUser != null) {
-      final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
-      if (googleAuth.idToken != null) {
-        final userCredential = await FirebaseAuth.instance
-            .signInWithCredential(GoogleAuthProvider.credential(
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      if (googleAuth.idToken != null && googleAuth.accessToken != null) {
+        final userCredential = await FirebaseAuth.instance.signInWithCredential(GoogleAuthProvider.credential(
           idToken: googleAuth.idToken,
-          // Note: Access token is null when running on web, so we don't check for it above
           accessToken: googleAuth.accessToken,
         ));
         return userCredential.user;
@@ -62,11 +68,10 @@ class Auth implements BaseAutenticacao {
     }
   }
 
-
-
   @override
   Future<void> signOut() async {
     final googleSignIn = GoogleSignIn();
+    await googleSignIn.disconnect();
     await googleSignIn.signOut();
     await _firebaseAuth.signOut();
   }

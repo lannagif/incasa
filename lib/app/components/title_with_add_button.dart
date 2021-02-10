@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
-import 'package:incasa/app/telas/add_comodos_pg.dart';
-import 'package:incasa/app/components/tipo_dispositivo.dart';
+//import 'package:incasa/app/telas/add_comodos_pg.dart';
+import 'package:incasa/app/components/dispositivos/tipo_dispositivo.dart';
 
 
 class TitleWithAdd extends StatelessWidget {
+
   const TitleWithAdd({
     Key key,
     this.text,
@@ -12,8 +13,6 @@ class TitleWithAdd extends StatelessWidget {
   }) : super(key: key);
   final String text;
   final Function press;
-
-
 
   @override
   Widget build(BuildContext context) {

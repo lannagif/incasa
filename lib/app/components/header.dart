@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
+import 'package:incasa/app/servicos/autenticacao.dart';
 import 'package:incasa/app/telas/account_pg.dart';
 //import 'package:incasa/app/components/text_field.dart';
 
@@ -22,110 +23,98 @@ class HeaderToAccount extends StatefulWidget {
 
 class _HeaderToAccountState extends State<HeaderToAccount> {
   Widget build(BuildContext context) {
+
+    BorderRadiusGeometry radius = BorderRadius.only(
+      bottomLeft: Radius.circular(36),
+      bottomRight: Radius.circular(36),
+    );
+
+
     return Material(
+      color: Colors.transparent,
       child: SafeArea(
-        child: Hero(
-          tag: 'accountPg',
+        child: ClipRRect(
+          borderRadius: radius,
           child: Container(
-            // Ocupa 15% da tela
-            height: widget.size.height*0.15,
-            width: widget.size.width,
-            color: kBackgroundColor,
 
             child: Stack(
               children: <Widget>[
-                Container(
-                  height: widget.size.height * 0.12,
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(36),
-                      bottomRight: Radius.circular(36),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0,10),
-                        blurRadius: 40,
-                        color: kPrimaryColor.withOpacity(0.8),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            //fit: FlexFit.loose,
+                            child: Container(
+                              //margin: EdgeInsets.symmetric(vertical: kDefPadding),
+                              child: MaterialButton(
+                                child: Icon(
+                                  Icons.tag_faces,
+                                  size: 50.0,
+                              ),
+                                onPressed: (){
+
+                                  /*
+                                  Navigator.of(context).push(
+                                    //MaterialPageRoute(builder: (context) => AccountPg(size: MediaQuery.of(context).size)),
+                                    PageRouteBuilder(
+                                      transitionDuration: Duration(milliseconds: 500),
+                                      pageBuilder: (
+                                          BuildContext context,
+                                          Animation<double> animation,
+                                          Animation<double> secondaryAnimation) {
+                                        return AccountPg(auth: Auth(),);
+                                      },
+                                      transitionsBuilder: (
+                                          BuildContext context,
+                                          Animation<double> animation,
+                                          Animation<double> secondaryAnimation,
+                                          Widget child) {
+                                        return Align(
+                                          child: FadeTransition(
+                                            opacity: animation,
+                                            child: child,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  );*/
+                                },
+                                //shape: CircleBorder(),
+                              ),
+                            ),
+                          ),
+                          //SizedBox(width: 2.0,),
+                          Expanded(
+                            flex: 4,
+                            child: Container(
+                              //margin: EdgeInsets.only(left: kDefPadding),
+                              child: Text(
+                                'Olá, ',
+                                style: Theme.of(context).textTheme.headline5.copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          //Spacer(),
+                          Expanded(
+                            flex: 2,
+                              child: buildBullets(widget.page),
+                          ),
+                        ],
                       ),
+                      //Spacer(),
                     ],
-                  ),
-                ),
-                Positioned(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //Spacer(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              //fit: FlexFit.loose,
-                              child: Container(
-                                //margin: EdgeInsets.symmetric(vertical: kDefPadding),
-                                child: MaterialButton(
-                                  child: Icon(
-                                    Icons.tag_faces,
-                                    size: 50.0,
-                                ),
-                                  onPressed: (){
-                                    Navigator.of(context).push(
-                                      //MaterialPageRoute(builder: (context) => AccountPg(size: MediaQuery.of(context).size)),
-                                      PageRouteBuilder(
-                                        transitionDuration: Duration(milliseconds: 500),
-                                        pageBuilder: (
-                                            BuildContext context,
-                                            Animation<double> animation,
-                                            Animation<double> secondaryAnimation) {
-                                          return AccountPg();
-                                        },
-                                        transitionsBuilder: (
-                                            BuildContext context,
-                                            Animation<double> animation,
-                                            Animation<double> secondaryAnimation,
-                                            Widget child) {
-                                          return Align(
-                                            child: FadeTransition(
-                                              opacity: animation,
-                                              child: child,
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  //shape: CircleBorder(),
-                                ),
-                              ),
-                            ),
-                            //SizedBox(width: 2.0,),
-                            Expanded(
-                              flex: 4,
-                              child: Container(
-                                //margin: EdgeInsets.only(left: kDefPadding),
-                                child: Text(
-                                  'Olá, ',
-                                  style: Theme.of(context).textTheme.headline5.copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            //Spacer(),
-                            Expanded(
-                              flex: 2,
-                                child: buildBullets(widget.page),
-                            ),
-                          ],
-                        ),
-                        //Spacer(),
-                      ],
-                    ),
                   ),
                 ),
               ],

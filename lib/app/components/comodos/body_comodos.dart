@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:incasa/app/components/dispositivo_cards.dart';
 import 'package:incasa/app/components/title_with_add_button.dart';
+import 'package:incasa/app/components/comodos/comodo_cards.dart';
 
-
-
-class BodyDispositivos extends StatelessWidget {
+class BodyComodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
@@ -14,10 +12,10 @@ class BodyDispositivos extends StatelessWidget {
       child: Column(
         children: <Widget>[
 
-          SizedBox(height: 10),
-          TitleWithAdd(text: 'Dispositivos', press: (){},),
+          SizedBox(height: 120),
+          TitleWithAdd(text: 'Cômodos', press: (){},),
           SizedBox(height: 5),
-          DispositivoCards(),
+          ComodoCards(),
         ],
       ),
     );
