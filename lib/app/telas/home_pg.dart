@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:incasa/app/components/comodos/body_comodos.dart';
-import 'package:incasa/app/components/dispositivos/body_dispositivo.dart';
+import 'package:incasa/app/telas/body_dispositivos/body_dispositivo.dart';
 import 'package:incasa/app/components/header.dart';
 import 'package:incasa/app/servicos/autenticacao.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-//import '../components/const.dart';
 import '../telas/account_pg.dart';
-
-
 
 class HomePg extends StatefulWidget {
 
@@ -71,9 +68,7 @@ class _HomePgState extends State<HomePg> {
       ),
     );
   }
-  Widget panel({
-  @required ScrollController sc,
-  }) => AccountPg(auth: null, sc: sc,);
+  Widget panel({@required ScrollController sc,}) => AccountPg(auth: null, sc: sc,);
 }
 
 

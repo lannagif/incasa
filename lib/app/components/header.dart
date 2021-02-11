@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
-import 'package:incasa/app/telas/account_pg.dart';
-//import 'package:incasa/app/components/text_field.dart';
-
-
 
 class HeaderToAccount extends StatefulWidget {
   const HeaderToAccount({

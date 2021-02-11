@@ -1,5 +1,3 @@
-/*
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -24,13 +22,11 @@ class FirestoreDatabase implements Database{
 }
 
 
- */
-
 //import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:meta/meta.dart';
 //import '';
 
-class FirestoreService {
+//class FirestoreService {
 
   //final CollectionReference _
 
@@ -88,4 +84,4 @@ class FirestoreService {
   }
 
   */
-}
+//}

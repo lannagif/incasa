@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
-//import 'package:incasa/app/telas/add_comodos_pg.dart';
-import 'package:incasa/app/components/dispositivos/tipo_dispositivo.dart';
+import 'package:incasa/app/modelos/tipo_dispositivo.dart';
 
 
 class TitleWithAdd extends StatelessWidget {

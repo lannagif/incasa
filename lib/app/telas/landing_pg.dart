@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:incasa/app/servicos/database.dart';
 import 'package:incasa/app/telas/home_pg.dart';
-import 'package:incasa/app/telas/login_pg.dart';
 import 'package:incasa/app/servicos/autenticacao.dart';
 import 'package:provider/provider.dart';
 import 'package:incasa/app/telas/email_login_pgs/sign_in_page.dart';
@@ -25,8 +25,11 @@ class LandingPg extends StatelessWidget {
             // );
             return SignInPage.create(context);
           }
-          return HomePg(
-            auth: auth,
+          return Provider<Database>(
+              create: (_) => FirestoreDatabase(uid: user.uid),
+              child: HomePg(
+                auth: auth,
+              ),
           );
         }
         return Scaffold(
