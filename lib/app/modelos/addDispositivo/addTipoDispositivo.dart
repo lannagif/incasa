@@ -5,8 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddTipoDispositivo extends StatefulWidget {
 
-  final Dispositivo dispositivo;
-  AddTipoDispositivo({Key key, @required this.dispositivo}) : super(key: key);
+  //final Dispositivo dispositivo;
+  //AddTipoDispositivo({Key key, @required this.dispositivo}) : super(key: key);
+
 
   @override
   _AddTipoDispositivoState createState() => _AddTipoDispositivoState();
@@ -48,6 +49,7 @@ class _AddTipoDispositivoState extends State<AddTipoDispositivo> {
             onChanged: (dispositivoTipo){
               setState(() {
                 selectedDispositivo = dispositivoTipo;
+
               });
             },
             value: selectedDispositivo,

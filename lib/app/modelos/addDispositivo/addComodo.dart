@@ -22,7 +22,7 @@ class _AddComodoState extends State<AddComodo> {
       stream: FirebaseFirestore.instance.collection('comodoDispositivo').snapshots(),
       builder: (context, snapshot){
         if(!snapshot.hasData){
-          return Text('Loading');
+          return Text('Loading' );
         } else {
           List<DropdownMenuItem> dispositivoItems = [];
           for (int i=0; i< snapshot.data.docs.length; i++){

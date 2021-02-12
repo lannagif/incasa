@@ -7,12 +7,12 @@ import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:incasa/app/modelos/addDispositivo/addTag.dart';
 import 'package:incasa/app/modelos/addDispositivo/addTipoDispositivo.dart';
 
-class ListItemComodo{
+/*class ListItemComodo{
   int value;
   String name;
 
   ListItemComodo(this.value, this.name);
-}
+}*/
 
 class AddDisp extends StatefulWidget {
 
@@ -24,12 +24,13 @@ class _AddDispState extends State<AddDisp> {
 
   final db = FirebaseFirestore.instance;
 
-  Dispositivo dispositivo;
+
+  Dispositivo dispositivo = Dispositivo('a','b', 'c');
+  _AddDispState({@required this.dispositivo});
 
   @override
   Widget build(BuildContext context) {
-    final novoDispositivo = Dispositivo(null,null,null);
-    Size size = MediaQuery.of(context).size;
+
     return MaterialButton(
       color: kTextColor,
       elevation: 0,
@@ -80,7 +81,7 @@ class _AddDispState extends State<AddDisp> {
                               ),),
                           ),
                           SizedBox(height: 20),
-                          AddTipoDispositivo(dispositivo: null),
+                          AddTipoDispositivo(),
                           SizedBox(height: 35),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -115,10 +116,11 @@ class _AddDispState extends State<AddDisp> {
                                     color: Colors.black,
                                 ),
                                 onPressed: () async {
+                                  print(dispositivo);
                                   await db.collection("dispositivos").add(
                                     {
-                                      //'tipo': dispositivo.tipo,
-                                      //'comodo': dispositivo.comodo,
+                                      'tipo': dispositivo.tipo,
+                                      'comodo': dispositivo.comodo,
                                       'tag': dispositivo.tag,
                                     }
                                   );

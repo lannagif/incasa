@@ -34,7 +34,7 @@ class _HomePgState extends State<HomePg> {
 
     return SafeArea(
       child: Scaffold(
-        //appBar: buildAppBar(),
+
         body: SlidingUpPanel(
           slideDirection: SlideDirection.DOWN,
           borderRadius: radius,
@@ -43,10 +43,9 @@ class _HomePgState extends State<HomePg> {
           panelBuilder: (sc) => panel(
             sc: sc,
           ),
-          //panel: HeaderToAccount(size: MediaQuery.of(context).size, page: index),
+
           body: Column(
             children: [
-              //HeaderToAccount(size: MediaQuery.of(context).size, page: index),
 
               Expanded(
                 child: PageView.builder(
