@@ -8,8 +8,11 @@ import 'package:incasa/app/telas/email_login_pgs/sign_in_page.dart';
 
 class LandingPg extends StatelessWidget {
 
-  LandingPg({@required this.auth});
-  final BaseAutenticacao auth;
+  //LandingPg({Key key, @required this.databaseBuilder}) : super(key:key);
+  //final Database Function(String) databaseBuilder;
+
+  //LandingPg({@required this.auth});
+  //final BaseAutenticacao auth;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class LandingPg extends StatelessWidget {
           return Provider<Database>(
               create: (_) => FirestoreDatabase(uid: user.uid),
               child: HomePg(
-                auth: auth,
+                //auth: auth,
               ),
           );
         }

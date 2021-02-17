@@ -33,7 +33,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+
         applicationId "com.lanna.incasa"
         minSdkVersion 21
         targetSdkVersion 29
@@ -50,18 +50,20 @@ android {
     }
 }
 
+flutter {
+    source '../..'
+}
 
 dependencies {
     // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
 
     // Add the dependencies for the desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
 
-    implementation 'com.android.support:multidex:1.0.3'
-}
+    //implementation 'com.google.firebase:firebase-auth'
+    //implementation 'com.google.firebase:firebase-firestore'
 
-
-flutter {
-    source '../..'
+    //implementation "androidx.multidex:multidex:2.0.1"
+    //implementation 'com.android.support:multidex:1.0.3'
 }

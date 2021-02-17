@@ -7,7 +7,6 @@ import 'package:incasa/app/telas/email_login_pgs/sign_in_button.dart';
 import 'package:incasa/app/telas/email_login_pgs/social_sign_in_button.dart';
 import 'package:incasa/app/components/show_exception_alert_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:incasa/app/servicos/autenticacao.dart';
 import 'package:incasa/app/components/const.dart';
 

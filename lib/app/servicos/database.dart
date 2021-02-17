@@ -1,14 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:incasa/app/modelos/dispositivo_modelo.dart';
+import 'package:meta/meta.dart';
+import 'package:incasa/app/servicos/api_path.dart';
+import 'package:incasa/app/servicos/firestore_service.dart';
+//import 'package:flutter/material.dart';
 
 abstract class Database{
 
-  //CREATE, UPDADE, DELETE
+  Future<void> createDispositivo(Dispositivo dispositivo);
+  Stream<List<Dispositivo>> dispositivoStream();
 
-
-
-  //READ
-
+  //Future<void> setDispositivo(Dispositivo dispositivo);
+  //Future<void> deleteDispositivo(Dispositivo dispositivo);
+  //Stream<List<Dispositivo>> streamDispositivo();
+  //Stream<Dispositivo> streamDispositivo({@required String dispositivoID});
 
 }
 
@@ -17,71 +22,32 @@ class FirestoreDatabase implements Database{
   FirestoreDatabase({@required this.uid}) : assert(uid != null);
   final String uid;
 
-  //void
+  final _service = FirestoreService.instance;
 
-}
+  Future<void> createDispositivo(Dispositivo dispositivo) => _service.setData(
+    path: APIPath.dispositivo(uid, 'dispositivo_abc'),
+    data: dispositivo.toMap(),
+  );
 
-
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:meta/meta.dart';
-//import '';
-
-//class FirestoreService {
-
-  //final CollectionReference _
+  Stream<List<Dispositivo>> dispositivoStream() => _service.collectionStream(
+    path: APIPath.dispositivos(uid),
+    builder: (data) => Dispositivo.fromMap(data),
+  );
 
   /*
-  FirestoreService._();
-  static final instance = FirestoreService._();
+  @override
+  Future<void> setDispositivo(Dispositivo dispositivo) => _service.setData(
+    path: APIPath.dispositivo(uid, dispositivo.id),
+    data: dispositivo.toMap(),
+  );
 
-
-  Future<void> setData({
-    @required String path,
-    @required Map<String, dynamic> data,
-    bool merge = false,
-  }) async {
-    final reference = FirebaseFirestore.instance.doc(path);
-    print('$path: $data');
-    await reference.set(data, SetOptions(merge: merge));
+  @override
+  Future<void> deleteDispositivo(Dispositivo dispositivo) async {
+    await _service.deleteData(path: APIPath.dispositivo(uid, dispositivo.uid));
   }
-
-  Future<void> deleteData({@required String path}) async {
-    final reference = FirebaseFirestore.instance.doc(path);
-    print('delete: $path');
-    await reference.delete();
-  }
-
-  Stream<List<T>> collectionStream<T>({
-    @required String path,
-    @required T Function(Map<String, dynamic> data, String documentID) builder,
-    Query Function(Query query) queryBuilder,
-    int Function(T lhs, T rhs) sort,
-  }) {
-    Query query = FirebaseFirestore.instance.collection(path);
-    if (queryBuilder != null) {
-      query = queryBuilder(query);
-    }
-    final Stream<QuerySnapshot> snapshots = query.snapshots();
-    return snapshots.map((snapshot) {
-      final result = snapshot.docs
-          .map((snapshot) => builder(snapshot.data(), snapshot.id))
-          .where((value) => value != null)
-          .toList();
-      if (sort != null) {
-        result.sort(sort);
-      }
-      return result;
-    });
-  }
-
-  Stream<T> documentStream<T>({
-    @required String path,
-    @required T Function(Map<String, dynamic> data, String documentID) builder,
-  }) {
-    final DocumentReference reference = FirebaseFirestore.instance.doc(path);
-    final Stream<DocumentSnapshot> snapshots = reference.snapshots();
-    return snapshots.map((snapshot) => builder(snapshot.data(), snapshot.id));
-  }
-
   */
-//}
+
+
+
+
+}

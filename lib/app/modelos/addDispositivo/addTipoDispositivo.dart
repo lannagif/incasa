@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -59,3 +60,4 @@ class _AddTipoDispositivoState extends State<AddTipoDispositivo> {
     );
   }
 }
+*/

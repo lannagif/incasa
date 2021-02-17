@@ -6,6 +6,7 @@ import 'package:incasa/app/telas/landing_pg.dart';
 //import 'package:incasa/app/telas/pre_login_pg.dart';
 import 'package:provider/provider.dart';
 import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/servicos/database.dart';
 
 
 Future <void> main() async {
@@ -24,28 +25,16 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'InCasa',
         theme: ThemeData(
-          //primarySwatch: Colors.yellow,
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: kBackgroundColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        home: LandingPg(auth: Auth()),
+        home: LandingPg(
+            //databaseBuilder: (uid) => FirestoreDatabase(uid: uid),
+        ),
       ),
     );
   }
 }
 
-/*
-return Provider<AuthBase>(
-create: (context) => Auth(),
-child: MaterialApp(
-debugShowCheckedModeBanner: false,
-title: 'InCasa',
-theme: ThemeData(
-primarySwatch: Colors.yellow,
-),
-home: Origem(
-databaseBuilder: (uid) => FirestoreDatabase(uid: uid),
-),
-),*/

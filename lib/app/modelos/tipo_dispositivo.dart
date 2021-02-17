@@ -1,18 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
-import 'package:incasa/app/modelos/addDispositivo/addComodo.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
-import 'package:incasa/app/modelos/addDispositivo/addTag.dart';
+import 'package:incasa/app/modelos/addDispositivo/addComodo.dart';
 import 'package:incasa/app/modelos/addDispositivo/addTipoDispositivo.dart';
-
-/*class ListItemComodo{
-  int value;
-  String name;
-
-  ListItemComodo(this.value, this.name);
-}*/
+//import 'package:incasa/app/modelos/addDispositivo/addTag.dart';
+import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/servicos/database.dart';
 
 class AddDisp extends StatefulWidget {
 
@@ -22,11 +18,20 @@ class AddDisp extends StatefulWidget {
 
 class _AddDispState extends State<AddDisp> {
 
-  final db = FirebaseFirestore.instance;
+  //final db = FirebaseFirestore.instance;
 
 
-  Dispositivo dispositivo = Dispositivo('a','b', 'c');
-  _AddDispState({@required this.dispositivo});
+  //Dispositivo dispositivo = Dispositivo('a','b', 'c');
+  //_AddDispState({@required this.dispositivo});
+
+  Future<void> _createDispositivo(BuildContext context) async {
+    try{
+      final database = Provider.of<Database>(context, listen: false);
+      await database.createDispositivo(Dispositivo(tipo: 'Lâmpada', comodo: 'sala'));
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +86,7 @@ class _AddDispState extends State<AddDisp> {
                               ),),
                           ),
                           SizedBox(height: 20),
-                          AddTipoDispositivo(),
+                          //AddTipoDispositivo(),
                           SizedBox(height: 35),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -92,7 +97,7 @@ class _AddDispState extends State<AddDisp> {
                               ),),
                           ),
                           SizedBox(height: 20),
-                          AddComodo(dispositivo: null),
+                          //AddComodo(),
                           SizedBox(height: 35),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -102,7 +107,7 @@ class _AddDispState extends State<AddDisp> {
                                 fontWeight: FontWeight.bold,
                               ),),
                           ),
-                          AddTag(dispositivo: Dispositivo(null,null,'L1'),),
+                          //AddTag(dispositivo: Dispositivo(null,null,'L1'),),
                           SizedBox(height: 40),
                           Column(
                             children: [
@@ -115,17 +120,17 @@ class _AddDispState extends State<AddDisp> {
                                     size: 20.0,
                                     color: Colors.black,
                                 ),
+                                onPressed: () => _createDispositivo(context),
+                                /*
                                 onPressed: () async {
-                                  print(dispositivo);
-                                  await db.collection("dispositivos").add(
-                                    {
-                                      'tipo': dispositivo.tipo,
-                                      'comodo': dispositivo.comodo,
-                                      'tag': dispositivo.tag,
-                                    }
-                                  );
+                                  builder: (context) {
+                                    return _createDispositivo(context);
+                                  },
                                   Navigator.of(context, rootNavigator: true).pop();
-                                },
+                                },*/
+                                //{
+                                  //
+                                //},
                               ),
                               Text('Adicionar',
                                 style: TextStyle(fontSize: 15, color: kPrimaryColor),),
