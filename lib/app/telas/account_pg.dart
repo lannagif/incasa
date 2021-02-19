@@ -1,26 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
-import '../servicos/autenticacao.dart';
+import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/servicos/database.dart';
 
 
 class AccountPg extends StatelessWidget {
 
   AccountPg({
     Key key,
-    this.size,
-    @required this.auth,
+    //this.size,
+    //@required this.auth,
     @required this.sc
   }) : super(key: key);
 
   final ScrollController sc;
-  final BaseAutenticacao auth;
+  //final BaseAutenticacao auth;
 
  Future<void> _signOut(BuildContext context) async {
    try {
-     //final auth = Provider.of<BaseAutenticacao>(context, listen: false);
-     await FirebaseAuth.instance.signOut();
+     final auth = Provider.of<BaseAutenticacao>(context, listen: false);
+     await auth.signOut();
      //onSignOut();
    } catch (e) {
      print(e.toString());
@@ -31,7 +33,7 @@ class AccountPg extends StatelessWidget {
   //final Size size;
   //final int page;
 
-  var size;
+  //var size;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class AccountPg extends StatelessWidget {
       bottomLeft: Radius.circular(36),
       bottomRight: Radius.circular(36),
     );
-    size = MediaQuery.of(context).size;
+    //size = MediaQuery.of(context).size;
     return Material(
       color: Colors.transparent,
       type: MaterialType.transparency,
@@ -48,11 +50,7 @@ class AccountPg extends StatelessWidget {
         child: ClipRRect(
           borderRadius: radius,
           child: Container(
-            // Ocupa 100% da tela
-            height: size.height,
-            width: size.width,
             color: kPrimaryColor,
-
             child: Stack(
               children: <Widget>[
                 //SizedBox(height: kDefPadding),
@@ -119,7 +117,6 @@ class AccountPg extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-
                                   //SizedBox(width: 25,),
                                   Text('Sair do InCasa',
                                     style: TextStyle(fontSize: 18),

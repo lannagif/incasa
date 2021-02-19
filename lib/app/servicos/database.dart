@@ -17,6 +17,8 @@ abstract class Database{
 
 }
 
+String documentIDFromCurrentDate() => DateTime.now().toIso8601String();
+
 class FirestoreDatabase implements Database{
 
   FirestoreDatabase({@required this.uid}) : assert(uid != null);
@@ -25,7 +27,7 @@ class FirestoreDatabase implements Database{
   final _service = FirestoreService.instance;
 
   Future<void> createDispositivo(Dispositivo dispositivo) => _service.setData(
-    path: APIPath.dispositivo(uid, 'dispositivo_abc'),
+    path: APIPath.dispositivo(uid, documentIDFromCurrentDate()),
     data: dispositivo.toMap(),
   );
 

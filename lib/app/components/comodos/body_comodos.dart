@@ -13,7 +13,7 @@ class BodyComodos extends StatelessWidget {
         children: <Widget>[
 
           SizedBox(height: 120),
-          TitleWithAdd(text: 'Cômodos', press: (){},),
+          TitleWithAdd(text: 'Cômodos'), //press: (){},),
           SizedBox(height: 5),
           ComodoCards(),
         ],

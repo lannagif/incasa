@@ -1,3 +1,5 @@
+/*
+
 import 'package:flutter/material.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 
@@ -7,11 +9,11 @@ class AddTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    TextEditingController _tagController = TextEditingController();
-    _tagController.text = dispositivo.tag;
+    TextEditingController tagController = TextEditingController();
+    tagController.text = dispositivo.tag;
 
     return TextFormField(
-      controller: _tagController,
+      controller: tagController,
       style: Theme.of(context).textTheme.headline5.copyWith(
         color: Colors.white,
         fontWeight: FontWeight.bold,
@@ -24,4 +26,4 @@ class AddTag extends StatelessWidget {
     );
   }
 }
-
+*/

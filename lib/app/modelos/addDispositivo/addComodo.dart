@@ -1,3 +1,6 @@
+/*
+
+
 import 'package:flutter/material.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,7 +16,7 @@ class AddComodo extends StatefulWidget {
 }
 
 class _AddComodoState extends State<AddComodo> {
-  var selectedDispositivo;
+  var selectedComodo;
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +50,14 @@ class _AddComodoState extends State<AddComodo> {
             items: dispositivoItems,
             onChanged: (dispositivoComodo){
               setState(() {
-                selectedDispositivo = dispositivoComodo;
+                selectedComodo = dispositivoComodo;
               });
             },
-            value: selectedDispositivo,
+            value: selectedComodo,
           );
         }
       },
     );
   }
 }
+*/

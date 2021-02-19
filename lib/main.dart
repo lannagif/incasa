@@ -30,9 +30,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        home: LandingPg(
-            //databaseBuilder: (uid) => FirestoreDatabase(uid: uid),
-        ),
+        home: LandingPg(),
       ),
     );
   }

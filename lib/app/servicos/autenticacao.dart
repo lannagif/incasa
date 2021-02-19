@@ -36,16 +36,13 @@ class Auth implements BaseAutenticacao {
         email: email, password: password);
     return userCredential.user;
   }
-
-
   /*
          final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
          final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
          final AuthCredential credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
          final User user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
-
-                     */
+  */
   @override
   Future<User> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
@@ -73,7 +70,7 @@ class Auth implements BaseAutenticacao {
   @override
   Future<void> signOut() async {
     final googleSignIn = GoogleSignIn();
-    await googleSignIn.disconnect();
+    //await googleSignIn.disconnect();
     await googleSignIn.signOut();
     await _firebaseAuth.signOut();
   }

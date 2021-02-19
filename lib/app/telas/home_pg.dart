@@ -9,8 +9,8 @@ import '../telas/account_pg.dart';
 
 class HomePg extends StatefulWidget {
 
-  HomePg({Key key, @required this.auth}) : super(key: key);
-  final BaseAutenticacao auth;
+  //HomePg({Key key, @required this.auth}) : super(key: key);
+  //final BaseAutenticacao auth;
 
 
   @override
@@ -67,7 +67,7 @@ class _HomePgState extends State<HomePg> {
       ),
     );
   }
-  Widget panel({@required ScrollController sc,}) => AccountPg(auth: null, sc: sc,);
+  Widget panel({@required ScrollController sc,}) => AccountPg(sc: sc,);
 }
 
 

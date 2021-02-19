@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
-import 'package:incasa/app/modelos/tipo_dispositivo.dart';
+//import 'package:incasa/app/modelos/tipo_dispositivo.dart';
+import 'package:incasa/app/telas/novo_dispositivo_pg.dart';
 
 
 class TitleWithAdd extends StatelessWidget {
@@ -8,10 +9,8 @@ class TitleWithAdd extends StatelessWidget {
   const TitleWithAdd({
     Key key,
     this.text,
-    this.press,
   }) : super(key: key);
   final String text;
-  final Function press;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class TitleWithAdd extends StatelessWidget {
       children: <Widget>[
         TitleUnderlined(text: text),
         Spacer(),
-        AddDisp(),
+        NovoDispositivo(),
       ],
     );
   }

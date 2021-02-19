@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:incasa/app/components/switch_on_off.dart';
-
+import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 
 class DispositivoCards extends StatelessWidget {
-  const DispositivoCards({
-    Key key,
-  }) : super(key: key);
+
+  const DispositivoCards({Key key, @required this.dispositivo}) : super(key: key);
+
+  final Dispositivo dispositivo;
 
   @override
   Widget build(BuildContext context) {
