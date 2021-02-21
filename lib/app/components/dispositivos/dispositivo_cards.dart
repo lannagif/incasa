@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:incasa/app/components/switch_on_off.dart';
@@ -105,4 +106,4 @@ class DispositivoCard extends StatelessWidget {
       },
     );
   }
-}
+}*/

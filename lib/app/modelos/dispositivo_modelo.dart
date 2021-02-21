@@ -4,10 +4,10 @@ import 'package:meta/meta.dart';
 class Dispositivo{
 
 
-  Dispositivo({@required this.tipo, @required this.comodo, @required this.tag});
+  Dispositivo({@required this.id, @required this.tipo, @required this.comodo, @required this.tag});
   //Dispositivo({@required this.id, this.tipo, this.comodo, this.tag, this.estado});
 
-  //final String id;
+  final String id;
   final String tipo;
   final String comodo;
   final String tag;
@@ -15,7 +15,7 @@ class Dispositivo{
 
 
 
-  factory Dispositivo.fromMap(Map<String, dynamic> data){
+  factory Dispositivo.fromMap(Map<String, dynamic> data, String documentID){
     if(data == null){
       return null;
     }
@@ -23,6 +23,7 @@ class Dispositivo{
     final String comodo = data['comodo'];
     final String tag = data['tag'];
     return Dispositivo(
+        id: documentID,
         tipo: tipo,
         comodo: comodo,
         tag: tag,

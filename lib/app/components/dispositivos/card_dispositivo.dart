@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:incasa/app/components/switch_on_off.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:incasa/app/components/const.dart';
 
@@ -27,19 +28,49 @@ class CardDispositivo extends StatelessWidget {
               ),
             ]
         ),
-        child: ListTile(
-          leading: Image.asset('assets/imgs/lamp.png'),
-          title: Text(dispositivo.tag??''),
-          subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
-          onTap: onTap,
-          trailing: chave(),
-        ),
+        child: Row(
+          children: [
+            Expanded(
+                flex: 2,
+                child: Image.asset('assets/imgs/lamp.png', height: 110)),
+            Expanded(
+              flex: 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Spacer(),
+                  ListTile(
+                    trailing: Icon(
+                      Icons.edit_outlined,
+                      color: Colors.black87,
+                      ),
+                    title: Text(dispositivo.tag??''),
+                    subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
+                    onTap: onTap,
+                  ),
+                  //Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //SwitchOnOff(),
+                    ],
+                  ),
+                  Spacer(),
+                ]
+              ),
+            ),
+            /*Expanded(
+              flex: 4,
+              child: SwitchListTile(
+                title: Text(dispositivo.tag??''),
+                subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
+                value: ,
+              ),
+            ),*/
+          ],
+        )
       ),
     );
-  }
-
-  Widget chave() {
-
   }
 }
 

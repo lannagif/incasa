@@ -14,16 +14,17 @@ import 'package:incasa/app/servicos/database.dart';
 
 class AddDisp extends StatefulWidget {
 
-  const AddDisp({Key key, @required this.database}) : super(key: key);
+  const AddDisp({Key key, @required this.database,this.dispositivo}) : super(key: key);
   final Database database;
+  final Dispositivo dispositivo;
 
-  static Future<void> show(BuildContext context) async {
+  static Future<void> show(BuildContext context, {Dispositivo dispositivo}) async {
     // context of dispositivos page
     final database = Provider.of<Database>(context, listen: false);
     await Navigator.of(context).push(
       PageRouteBuilder(
         opaque: false,
-        pageBuilder: (context, animation, secondaryanimation) => AddDisp(database: database,),
+        pageBuilder: (context, animation, secondaryanimation) => AddDisp(database: database, dispositivo: dispositivo,),
         fullscreenDialog: true,
       ),
     );
@@ -43,6 +44,16 @@ class _AddDispState extends State<AddDisp> {
 
   var selectedDispositivo;
   var selectedComodo;
+
+  @override
+  void initState(){
+    super.initState();
+    if(widget.dispositivo != null){
+      _tipo = widget.dispositivo.tipo;
+      _comodo = widget.dispositivo.comodo;
+      _tag = widget.dispositivo.tag;
+    }
+  }
 
   bool _validadeAndSaveForm(){
     final form = _formKey.currentState;
@@ -64,6 +75,9 @@ class _AddDispState extends State<AddDisp> {
       try {
         final dispositivos = await widget.database.dispositivoStream().first;
         final allTags = dispositivos.map((dispositivo) => dispositivo.tag).toList();
+        if(widget.dispositivo != null){
+          allTags.remove(widget.dispositivo.tag);
+        }
         if (allTags.contains(_tag)){
           showAlertDialog(
               context,
@@ -72,8 +86,9 @@ class _AddDispState extends State<AddDisp> {
               defaultActionText: 'OK'
           );
         } else{
-          final dispositivo = Dispositivo(tipo: _tipo, comodo: _comodo, tag: _tag);
-          await widget.database.createDispositivo(dispositivo);
+          final id = widget.dispositivo?.id ?? documentIDFromCurrentDate();
+          final dispositivo = Dispositivo(id: id, tipo: _tipo, comodo: _comodo, tag: _tag);
+          await widget.database.setDispositivo(dispositivo);
           Navigator.of(context).pop();
         }
       } on FirebaseException catch (e) {
@@ -128,8 +143,7 @@ class _AddDispState extends State<AddDisp> {
   List<Widget> _buildFormChildren() {
     return [
       SizedBox(height: 20),
-      Text(
-        'Novo Dispositivo',
+      Text(widget.dispositivo == null ? 'Novo dispositivo' : 'Editar dispositivo',
         style: Theme.of(context).textTheme.headline4.copyWith(
           color: kPrimaryColor,
           fontWeight: FontWeight.bold,
@@ -169,6 +183,7 @@ class _AddDispState extends State<AddDisp> {
                 )
               );
             }
+
             return DropdownButtonFormField(
               iconSize: 40,
               dropdownColor: Colors.grey[800],
@@ -179,7 +194,7 @@ class _AddDispState extends State<AddDisp> {
                   selectedDispositivo = dispositivoTipo;
               });
              },
-              value: selectedDispositivo,
+              value: widget.dispositivo == null ? selectedDispositivo :_tipo,
               onSaved: (value) => _tipo = value,
             );
           }
@@ -226,10 +241,10 @@ class _AddDispState extends State<AddDisp> {
               items: dispositivoItems,
               onChanged: (dispositivoComodo){
               setState(() {
-              selectedComodo = dispositivoComodo;
+                selectedComodo = dispositivoComodo;
                });
               },
-              value: selectedComodo,
+              value: widget.dispositivo == null ? selectedComodo : _comodo,
               onSaved: (value) => _comodo = value,
             );
           }
@@ -255,6 +270,7 @@ class _AddDispState extends State<AddDisp> {
           hintText: 'i.e. Lâmpada 1 | Cortina da Sala | etc',
           hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
         ),
+        initialValue: _tag,
         onSaved: (value) => _tag = value,
         validator: (value) => value.isNotEmpty ? null : 'Defina a tag.',
       ),
@@ -265,14 +281,13 @@ class _AddDispState extends State<AddDisp> {
         elevation: 0,
         onPressed: _enviarDispositivo,
         child: Icon(
-          Icons.add,
+          widget. dispositivo == null ? Icons.add : Icons.system_update_alt,
           size: 20.0,
           color: Colors.black,
         ),
       ),
 
-      Text(
-        'Adicionar',
+      Text(widget.dispositivo == null ? 'Adicionar' : 'Salvar',
         style: TextStyle(fontSize: 15, color: kPrimaryColor),
       ),
     ];

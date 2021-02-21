@@ -13,10 +13,10 @@ import 'package:incasa/app/servicos/database.dart';
 
 class NovoDispositivo extends StatelessWidget {
 
-  Future<void> _createDispositivo(BuildContext context) async {
+/*  Future<void> _createDispositivo(BuildContext context) async {
     try {
       final database = Provider.of<Database>(context, listen: false);
-      await database.createDispositivo(Dispositivo(tipo: 'Lâmpada', comodo: 'sala', tag: 'l1'));
+      await database.setDispositivo(Dispositivo(tipo: 'Lâmpada', comodo: 'sala', tag: 'l1'));
     } on FirebaseException catch (e) {
       showExceptionAlertDialog(
         context,
@@ -24,7 +24,7 @@ class NovoDispositivo extends StatelessWidget {
         exception: e,
       );
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,5 @@ class NovoDispositivo extends StatelessWidget {
       shape: CircleBorder(),
     );
   }
-
-
-
 
 }
