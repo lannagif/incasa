@@ -55,6 +55,7 @@ class _AddDispState extends State<AddDisp> {
     }
   }
 
+
   bool _validadeAndSaveForm(){
     final form = _formKey.currentState;
     if (form.validate()) {
@@ -99,7 +100,20 @@ class _AddDispState extends State<AddDisp> {
         );
       }
     }
+  }
 
+  Future<void> _deleteDispositivo(BuildContext context, Dispositivo dispositivo) async {
+
+    try {
+      final database = Provider.of<Database>(context, listen: false);
+      await database.deleteDispositivo(dispositivo);
+    } on FirebaseException catch (e) {
+      showExceptionAlertDialog(
+          context,
+          title: 'Erro ao deletar dispositivo',
+          exception: e,
+      );
+    }
   }
 
   @override
@@ -275,21 +289,54 @@ class _AddDispState extends State<AddDisp> {
         validator: (value) => value.isNotEmpty ? null : 'Defina a tag.',
       ),
       SizedBox(height: 40),
-      MaterialButton(
-        shape: CircleBorder(),
-        color: kPrimaryColor,
-        elevation: 0,
-        onPressed: _enviarDispositivo,
-        child: Icon(
-          widget. dispositivo == null ? Icons.add : Icons.system_update_alt,
-          size: 20.0,
-          color: Colors.black,
-        ),
-      ),
-
-      Text(widget.dispositivo == null ? 'Adicionar' : 'Salvar',
-        style: TextStyle(fontSize: 15, color: kPrimaryColor),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              MaterialButton(
+                shape: CircleBorder(),
+                color: kPrimaryColor,
+                elevation: 0,
+                onPressed: _enviarDispositivo,
+                child: Icon(
+                  widget. dispositivo == null ? Icons.add : Icons.system_update_alt,
+                  size: 20.0,
+                  color: Colors.black,
+                ),
+              ),
+              Text(widget.dispositivo == null ? 'Adicionar' : 'Salvar',
+                style: TextStyle(fontSize: 15, color: kPrimaryColor),
+              ),
+            ],
+          ),
+          widget.dispositivo == null ? Container() : _delete(widget.dispositivo),
+        ],
       ),
     ];
+  }
+
+  Widget _delete(Dispositivo dispositivo){
+    return Container(
+      child: Column(
+        children: [
+          MaterialButton(
+            shape: CircleBorder(),
+            color: kPrimaryColor,
+            elevation: 0,
+            onPressed: () => _deleteDispositivo,
+            child: Icon(
+              Icons.delete_forever,
+              size: 20.0,
+              color: Colors.black,
+            ),
+          ),
+          Text('Excluir',
+            style: TextStyle(fontSize: 15, color: kPrimaryColor),
+          ),
+        ],
+      ),
+    );
+
   }
 }

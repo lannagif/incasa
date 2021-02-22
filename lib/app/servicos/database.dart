@@ -8,10 +8,9 @@ import 'package:incasa/app/servicos/firestore_service.dart';
 abstract class Database{
 
   Future<void> setDispositivo(Dispositivo dispositivo); // Método Create and Update = setDispositivo
+  Future<void> deleteDispositivo(Dispositivo dispositivo);
   Stream<List<Dispositivo>> dispositivoStream();
 
-  //Future<void> setDispositivo(Dispositivo dispositivo);
-  //Future<void> deleteDispositivo(Dispositivo dispositivo);
   //Stream<List<Dispositivo>> streamDispositivo();
   //Stream<Dispositivo> streamDispositivo({@required String dispositivoID});
 
@@ -26,15 +25,23 @@ class FirestoreDatabase implements Database{
 
   final _service = FirestoreService.instance;
 
+  @override
   Future<void> setDispositivo(Dispositivo dispositivo) => _service.setData(
     path: APIPath.dispositivo(uid, dispositivo.id),
     data: dispositivo.toMap(),
   );
 
+  @override
+  Future<void> deleteDispositivo(Dispositivo dispositivo) => _service.deleteData(
+      path: APIPath.dispositivo(uid, dispositivo.id),
+  );
+
+  @override
   Stream<List<Dispositivo>> dispositivoStream() => _service.collectionStream(
     path: APIPath.dispositivos(uid),
     builder: (data, documentID) => Dispositivo.fromMap(data, documentID),
   );
+
 
   /*
   @override
@@ -42,11 +49,6 @@ class FirestoreDatabase implements Database{
     path: APIPath.dispositivo(uid, dispositivo.id),
     data: dispositivo.toMap(),
   );
-
-  @override
-  Future<void> deleteDispositivo(Dispositivo dispositivo) async {
-    await _service.deleteData(path: APIPath.dispositivo(uid, dispositivo.uid));
-  }
   */
 
 

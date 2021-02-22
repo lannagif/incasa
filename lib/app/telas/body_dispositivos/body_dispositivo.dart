@@ -3,6 +3,7 @@ import 'package:incasa/app/components/dispositivos/card_dispositivo.dart';
 import 'package:incasa/app/components/dispositivos/dispositivo_cards.dart';
 import 'package:incasa/app/components/title_with_add_button.dart';
 import 'package:incasa/app/modelos/tipo_dispositivo.dart';
+import 'package:incasa/app/telas/body_dispositivos/lista_dispositivos.dart';
 import 'package:incasa/app/telas/body_dispositivos/vazio.dart';
 import 'package:incasa/app/telas/novo_dispositivo_pg.dart';
 import 'package:incasa/app/servicos/database.dart';
@@ -13,7 +14,7 @@ import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 
 class BodyDispositivos extends StatelessWidget {
 
-  //final _pageControler = PageController();
+  ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +38,29 @@ class BodyDispositivos extends StatelessWidget {
       return StreamBuilder<List<Dispositivo>>(
         stream: database.dispositivoStream(),
         builder: (context, snapshot) {
+
+        /*  return ListItemsBuilder<Dispositivo>(
+            snapshot: snapshot,
+            itemBuilder: (context, dispositivo) => CardDispositivo(
+                dispositivo: dispositivo,
+                onTap: () => AddDisp.show(context, dispositivo: dispositivo),
+            ),
+          );*/
+
+
           if (snapshot.hasData) {
             final dispositivos = snapshot.data;
             if(dispositivos.isNotEmpty) {
               final children = dispositivos.map((dispositivo) =>
                   CardDispositivo(
+                    key: Key('dispositivo-${dispositivo.id}'),
                     dispositivo: dispositivo,
                     onTap: () =>
                         AddDisp.show(context, dispositivo: dispositivo),
                   )).toList();
-              //TODO: Substituir por cards
+
               return ListView(
+                controller: _scrollController,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 children: children,
@@ -59,6 +72,7 @@ class BodyDispositivos extends StatelessWidget {
             return Center(child: Text('Aconteceu algo inesperado'));
           }
           return Center(child: CircularProgressIndicator());
+
         },
       );
     }

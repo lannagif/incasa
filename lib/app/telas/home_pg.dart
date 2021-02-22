@@ -5,13 +5,9 @@ import 'package:incasa/app/telas/body_dispositivos/body_dispositivo.dart';
 import 'package:incasa/app/components/header.dart';
 import 'package:incasa/app/servicos/autenticacao.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import '../telas/account_pg.dart';
+import 'package:incasa/app/telas/account_pg.dart';
 
 class HomePg extends StatefulWidget {
-
-  //HomePg({Key key, @required this.auth}) : super(key: key);
-  //final BaseAutenticacao auth;
-
 
   @override
   _HomePgState createState() => _HomePgState();

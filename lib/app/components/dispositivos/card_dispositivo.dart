@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:incasa/app/components/switch_on_off.dart';
+//import 'package:incasa/app/components/switch_on_off.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:incasa/app/components/const.dart';
 
@@ -48,14 +48,27 @@ class CardDispositivo extends StatelessWidget {
                     subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
                     onTap: onTap,
                   ),
-                  //Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //SwitchOnOff(),
-                    ],
-                  ),
                   Spacer(),
+                  /*Card(
+                    color: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    child: InkWell(
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        children: [
+                          Container(),
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Icon(
+                              Icons.edit_outlined,
+                              color: Colors.black87,
+                              ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Spacer(),*/
                 ]
               ),
             ),
