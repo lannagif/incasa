@@ -83,7 +83,7 @@ class SignInPage extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 30,),
                 Container(
-                  child: Image.asset('assets/imgs/casa.png'),
+                  child: Image.asset('assets/imgs/casa2.png'),
                   decoration: BoxDecoration(
                     color: Colors.yellow[100],
                     borderRadius: BorderRadius.circular(36),

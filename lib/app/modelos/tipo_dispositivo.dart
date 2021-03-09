@@ -6,10 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
-//import 'package:incasa/app/modelos/addDispositivo/addComodo.dart';
-//import 'package:incasa/app/modelos/addDispositivo/addTipoDispositivo.dart';
-//import 'package:incasa/app/modelos/addDispositivo/addTag.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
 import 'package:incasa/app/servicos/database.dart';
 
 class AddDisp extends StatefulWidget {
@@ -41,6 +37,7 @@ class _AddDispState extends State<AddDisp> {
   String _tipo;
   String _comodo;
   String _tag;
+  int _estado;
 
   var selectedDispositivo;
   var selectedComodo;
@@ -52,6 +49,7 @@ class _AddDispState extends State<AddDisp> {
       _tipo = widget.dispositivo.tipo;
       _comodo = widget.dispositivo.comodo;
       _tag = widget.dispositivo.tag;
+      _estado = widget.dispositivo.estado;
     }
   }
 
@@ -88,7 +86,7 @@ class _AddDispState extends State<AddDisp> {
           );
         } else{
           final id = widget.dispositivo?.id ?? documentIDFromCurrentDate();
-          final dispositivo = Dispositivo(id: id, tipo: _tipo, comodo: _comodo, tag: _tag);
+          final dispositivo = Dispositivo(id: id, tipo: _tipo, comodo: _comodo, tag: _tag, estado: _estado);
           await widget.database.setDispositivo(dispositivo);
           Navigator.of(context).pop();
         }
@@ -102,11 +100,12 @@ class _AddDispState extends State<AddDisp> {
     }
   }
 
-  Future<void> _deleteDispositivo(BuildContext context, Dispositivo dispositivo) async {
+  Future<void> _deleteDispositivo(Dispositivo dispositivo) async {
 
     try {
-      final database = Provider.of<Database>(context, listen: false);
+      final database = widget.database;
       await database.deleteDispositivo(dispositivo);
+      Navigator.of(context).pop();
     } on FirebaseException catch (e) {
       showExceptionAlertDialog(
           context,
@@ -324,7 +323,7 @@ class _AddDispState extends State<AddDisp> {
             shape: CircleBorder(),
             color: kPrimaryColor,
             elevation: 0,
-            onPressed: () => _deleteDispositivo,
+            onPressed: () => _deleteDispositivo(dispositivo),
             child: Icon(
               Icons.delete_forever,
               size: 20.0,

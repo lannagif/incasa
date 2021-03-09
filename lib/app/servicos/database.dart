@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:meta/meta.dart';
 import 'package:incasa/app/servicos/api_path.dart';

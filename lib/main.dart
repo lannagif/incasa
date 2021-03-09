@@ -6,7 +6,7 @@ import 'package:incasa/app/telas/landing_pg.dart';
 //import 'package:incasa/app/telas/pre_login_pg.dart';
 import 'package:provider/provider.dart';
 import 'package:incasa/app/servicos/autenticacao.dart';
-import 'package:incasa/app/servicos/database.dart';
+//import 'package:incasa/app/servicos/database.dart';
 
 
 Future <void> main() async {

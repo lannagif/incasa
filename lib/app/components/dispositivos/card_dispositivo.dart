@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:incasa/app/components/switch_on_off.dart';
+import 'package:incasa/app/components/switch_on_off.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:incasa/app/components/const.dart';
 
@@ -10,6 +10,7 @@ class CardDispositivo extends StatelessWidget {
 
   final Dispositivo dispositivo;
   final VoidCallback onTap;
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,59 +29,42 @@ class CardDispositivo extends StatelessWidget {
               ),
             ]
         ),
-        child: Row(
-          children: [
-            Expanded(
-                flex: 2,
-                child: Image.asset('assets/imgs/lamp.png', height: 110)),
-            Expanded(
-              flex: 4,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Spacer(),
-                  ListTile(
-                    trailing: Icon(
-                      Icons.edit_outlined,
-                      color: Colors.black87,
-                      ),
-                    title: Text(dispositivo.tag??''),
-                    subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
-                    onTap: onTap,
-                  ),
-                  Spacer(),
-                  /*Card(
-                    color: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    child: InkWell(
-                      child: Stack(
-                        alignment: AlignmentDirectional.bottomEnd,
-                        children: [
-                          Container(),
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Icon(
-                              Icons.edit_outlined,
-                              color: Colors.black87,
-                              ),
-                          ),
-                        ],
-                      ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                  flex: 2,
+                  child: Image.asset('assets/imgs/lamp.png', height: 110)),
+              Expanded(
+                flex: 4,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //Spacer(),
+                    ListTile(
+
+                      title: Text(dispositivo.tag??''),
+                      subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
+                      onTap: onTap,
                     ),
-                  ),
-                  Spacer(),*/
-                ]
+                    //Spacer(),
+                  ]
+                ),
               ),
-            ),
-            /*Expanded(
-              flex: 4,
-              child: SwitchListTile(
-                title: Text(dispositivo.tag??''),
-                subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
-                value: ,
-              ),
-            ),*/
-          ],
+              Expanded(flex: 2,
+                  child: SwitchOnOff()),
+              /*Expanded(
+                flex: 4,
+                child: SwitchListTile(
+                  title: Text(dispositivo.tag??''),
+                  subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
+                  value: ,
+                ),
+              ),*/
+            ],
+          ),
         )
       ),
     );

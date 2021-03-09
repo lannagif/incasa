@@ -39,6 +39,8 @@ dependencies:
   getwidget: ^1.2.4
   sliding_up_panel: ^1.0.2
   rxdart: ^0.25.0
+  flutter_slidable: 0.5.7
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -69,6 +71,7 @@ flutter:
     - assets/imgs/casa.png
     - assets/imgs/logos/google-logo.png
     - assets/imgs/logos/email.png
+    - assets/imgs/casa2.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
