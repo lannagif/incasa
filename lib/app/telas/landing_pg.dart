@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:incasa/app/components/header_info.dart';
 import 'package:incasa/app/servicos/database.dart';
 import 'package:incasa/app/telas/home_pg.dart';
 import 'package:incasa/app/servicos/autenticacao.dart';
@@ -23,9 +24,6 @@ class LandingPg extends StatelessWidget {
         if(snapshot.connectionState == ConnectionState.active){
           User user = snapshot.data;
           if (user == null){
-            // return LoginPg(
-            //   auth: auth,
-            // );
             return SignInPage.create(context);
           }
           return Provider<Database>(

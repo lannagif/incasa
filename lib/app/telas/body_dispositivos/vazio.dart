@@ -16,9 +16,11 @@ class Vazio extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(height: 50),
         Text(
           title,
         ),
+        SizedBox(height: 50),
         Text(
           message,
         ),

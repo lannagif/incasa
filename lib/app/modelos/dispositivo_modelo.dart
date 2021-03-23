@@ -4,13 +4,14 @@ import 'package:meta/meta.dart';
 class Dispositivo{
 
 
-  Dispositivo({@required this.id, @required this.tipo, @required this.comodo, @required this.tag, this.estado});
+  Dispositivo({@required this.id, @required this.tipo, @required this.comodo, @required this.tag, this.mac, this.estado});
 
 
   final String id;
   final String tipo;
   final String comodo;
   final String tag;
+  final String mac;
   final int estado;
 
 
@@ -22,12 +23,14 @@ class Dispositivo{
     final String tipo = data['tipo'];
     final String comodo = data['comodo'];
     final String tag = data['tag'];
+    final String mac = data['mac'];
 
     return Dispositivo(
         id: documentID,
         tipo: tipo,
         comodo: comodo,
         tag: tag,
+        mac: mac,
     );
   }
 
@@ -37,6 +40,7 @@ class Dispositivo{
       'tipo': tipo,
       'comodo': comodo,
       'tag': tag,
+      'mac': mac,
       //'estado': estado,
     };
   }

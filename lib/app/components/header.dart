@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
+import 'package:incasa/app/telas/account_pg.dart';
+import 'package:provider/provider.dart';
+
+import 'header_info.dart';
 
 class HeaderToAccount extends StatefulWidget {
   const HeaderToAccount({
@@ -56,32 +60,6 @@ class _HeaderToAccountState extends State<HeaderToAccount> {
                                   size: 50.0,
                               ),
                                 onPressed: (){
-
-                                  /*
-                                  Navigator.of(context).push(
-                                    //MaterialPageRoute(builder: (context) => AccountPg(size: MediaQuery.of(context).size)),
-                                    PageRouteBuilder(
-                                      transitionDuration: Duration(milliseconds: 500),
-                                      pageBuilder: (
-                                          BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation) {
-                                        return AccountPg(auth: Auth(),);
-                                      },
-                                      transitionsBuilder: (
-                                          BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation,
-                                          Widget child) {
-                                        return Align(
-                                          child: FadeTransition(
-                                            opacity: animation,
-                                            child: child,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  );*/
                                 },
                                 //shape: CircleBorder(),
                               ),
@@ -92,12 +70,17 @@ class _HeaderToAccountState extends State<HeaderToAccount> {
                             flex: 4,
                             child: Container(
                               //margin: EdgeInsets.only(left: kDefPadding),
-                              child: Text(
-                                'Olá, ',
-                                style: Theme.of(context).textTheme.headline5.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Olá, ${Provider.of<HeaderInfo>(context).nameUser}',
+                                    style: Theme.of(context).textTheme.headline5.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  //*****Provider<AccountPg>.value(value: ,),
+                                ],
                               ),
                             ),
                           ),

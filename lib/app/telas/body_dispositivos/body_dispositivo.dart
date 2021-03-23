@@ -13,8 +13,13 @@ import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 
 
 
-class BodyDispositivos extends StatelessWidget {
+class BodyDispositivos extends StatefulWidget {
 
+  @override
+  _BodyDispositivosState createState() => _BodyDispositivosState();
+}
+
+class _BodyDispositivosState extends State<BodyDispositivos> {
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -32,7 +37,6 @@ class BodyDispositivos extends StatelessWidget {
       ),
     );
   }
-
 
     Widget _buildContents(BuildContext context) {
       final database = Provider.of<Database>(context, listen: false);

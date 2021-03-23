@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-//import 'package:provider/provider.dart';
 import 'package:incasa/app/components/comodos/body_comodos.dart';
+import 'package:incasa/app/components/header_info.dart';
 import 'package:incasa/app/telas/body_dispositivos/body_dispositivo.dart';
 import 'package:incasa/app/components/header.dart';
-//import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:incasa/app/telas/account_pg.dart';
 
@@ -19,6 +20,15 @@ class _HomePgState extends State<HomePg> {
 
   int index = 0;
 
+  final focusNode = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<HeaderInfo>(context, listen: false).lerUserName();
+  }
+
   @override
   Widget build(BuildContext context) {
     _panelHeightOpen = MediaQuery.of(context).size.height*0.95;
@@ -30,7 +40,7 @@ class _HomePgState extends State<HomePg> {
 
     return SafeArea(
       child: Scaffold(
-
+        resizeToAvoidBottomInset: false,
         body: SlidingUpPanel(
           slideDirection: SlideDirection.DOWN,
           borderRadius: radius,
@@ -42,7 +52,6 @@ class _HomePgState extends State<HomePg> {
 
           body: Column(
             children: [
-
               Expanded(
                 child: PageView.builder(
                   itemCount: 2,
@@ -63,7 +72,13 @@ class _HomePgState extends State<HomePg> {
       ),
     );
   }
-  Widget panel({@required ScrollController sc,}) => AccountPg(sc: sc,);
+  Widget panel({@required ScrollController sc,}) => GestureDetector(
+      onTap: () {
+        if(!focusNode.hasPrimaryFocus) {
+          focusNode.unfocus();
+        }
+      },
+      child: AccountPg(sc: sc,));
 }
 
 

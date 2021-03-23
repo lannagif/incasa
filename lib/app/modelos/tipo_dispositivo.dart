@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:incasa/app/servicos/database.dart';
+import 'package:masked_text/masked_text.dart';
 
 class AddDisp extends StatefulWidget {
 
@@ -37,6 +38,7 @@ class _AddDispState extends State<AddDisp> {
   String _tipo;
   String _comodo;
   String _tag;
+  String _mac;
   int _estado;
 
   var selectedDispositivo;
@@ -49,6 +51,7 @@ class _AddDispState extends State<AddDisp> {
       _tipo = widget.dispositivo.tipo;
       _comodo = widget.dispositivo.comodo;
       _tag = widget.dispositivo.tag;
+      _mac = widget.dispositivo.mac;
       _estado = widget.dispositivo.estado;
     }
   }
@@ -264,6 +267,31 @@ class _AddDispState extends State<AddDisp> {
         },
       ),
       SizedBox(height: 35),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          'Endereço Mac do Dispositivo',
+          style: Theme.of(context).textTheme.headline6.copyWith(
+            color: kPrimaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+
+        TextFormField(
+          style: Theme.of(context).textTheme.headline5.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          decoration: const InputDecoration(
+            hintText: 'i.e. xx:xx:xx:xx:xx',
+            hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
+          ),
+          initialValue: _mac,
+          onSaved: (value) => _mac = value,
+          validator: (value) => value.isNotEmpty ? null : 'Endereço mac é necessário.',
+        ),
+
       Align(
         alignment: Alignment.centerLeft,
         child: Text(

@@ -35,11 +35,20 @@ dependencies:
   font_awesome_flutter: ^8.10.0
   path_provider: ^1.6.24
   provider: ^4.3.2+2
+  shared_preferences: ">=0.5.12+2 <2.0.0"
   google_fonts: ^1.1.1
   getwidget: ^1.2.4
   sliding_up_panel: ^1.0.2
   rxdart: ^0.25.0
   flutter_slidable: 0.5.7
+  masked_text: ^0.0.6
+  wifi_info_flutter: ^1.0.4
+  connectivity: ^0.4.8+6
+  permission_handler: ^5.0.1
+  speech_to_text: ^3.1.0
+  highlight_text: ^0.7.2
+  avatar_glow: ^1.2.0
+  http: ^0.12.2
 
 
   # The following adds the Cupertino Icons font to your application.
