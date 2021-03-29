@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
-import 'package:incasa/app/servicos/database.dart';
+import 'package:incasa/app/services/database.dart';
 import 'package:masked_text/masked_text.dart';
 
 class AddDisp extends StatefulWidget {
@@ -284,7 +284,7 @@ class _AddDispState extends State<AddDisp> {
             fontWeight: FontWeight.bold,
           ),
           decoration: const InputDecoration(
-            hintText: 'i.e. xx:xx:xx:xx:xx',
+            //hintText: 'i.e. xx:xx:xx:xx:xx',
             hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
           ),
           initialValue: _mac,
@@ -364,6 +364,13 @@ class _AddDispState extends State<AddDisp> {
         ],
       ),
     );
+  }
 
+  enderecoMacMask(){
+    MaskedTextField(
+      //maskedTextFieldController: _textController,
+      mask: 'xx:xx:xx:xx:xx:xx',
+      maxLength: 14,
+    );
   }
 }

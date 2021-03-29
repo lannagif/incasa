@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:incasa/app/components/HomePgProvider/home_pg_provider.dart';
 import 'package:incasa/app/components/const.dart';
-//import 'package:incasa/app/modelos/tipo_dispositivo.dart';
+import 'package:incasa/app/telas/home_pg.dart';
 import 'package:incasa/app/telas/novo_dispositivo_pg.dart';
+import 'package:provider/provider.dart';
 
 
 class TitleWithAdd extends StatelessWidget {
@@ -18,7 +20,10 @@ class TitleWithAdd extends StatelessWidget {
       children: <Widget>[
         TitleUnderlined(text: text),
         Spacer(),
-        NovoDispositivo(),
+        //Container(child: Text(Provider.of<HomePgProvider>(context).index.toString())),
+        Container(
+            child: Provider.of<HomePgProvider>(context).index == 1 ? null : NovoDispositivo(),
+        ),
       ],
     );
   }

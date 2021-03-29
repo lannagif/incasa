@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:incasa/app/components/HomePgProvider/home_pg_provider.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:incasa/app/components/header_info.dart';
-import 'package:incasa/app/telas/wifi_config/wifi_info_pg.dart';
+import 'package:incasa/app/telas/home_pg.dart';
+//import 'package:incasa/app/telas/wifi_config/wifi_info_esp.dart';
+//import 'package:incasa/app/telas/wifi_config/wifi_info_pg.dart';
 import 'package:incasa/app/telas/landing_pg.dart';
-import 'package:incasa/app/telas/wifi_config/wifi_info_pg.dart';
 import 'package:provider/provider.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
-//import 'package:incasa/app/servicos/database.dart';
+import 'package:incasa/app/services/autentication.dart';
+import 'package:incasa/app/telas/wifi_config/wifi_manager.dart';
 
 
 Future <void> main() async {
@@ -22,14 +24,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          Provider<BaseAutenticacao>(
+          Provider<AuthBase>(
             create: (context) => Auth(),
           ),
           ChangeNotifierProvider(
               create: (context) => HeaderInfo(),
           ),
-          Provider<WifiInform>(
-              create: (context) => WifiInform()),
+          Provider<WifiInfoSsidPwd>(
+               create: (context) => WifiInfoSsidPwd(),
+           ),
+          ChangeNotifierProvider(
+            create: (context) => HomePgProvider(),
+          ),
+          //ChangeNotifierProvider(
+          //    create: (context) => WifiInfoSsidPwd(),
+          //),
         ],
         child: MaterialApp(
         title: 'InCasa',

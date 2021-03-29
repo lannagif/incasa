@@ -7,14 +7,14 @@ import 'package:incasa/app/telas/email_login_pgs/email_sign_in_bloc.dart';
 import 'package:incasa/app/telas/email_login_pgs/email_sign_in_model.dart';
 import 'package:incasa/app/components/form_submit_button.dart';
 import 'package:incasa/app/components/show_exception_alert_dialog.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/services/autentication.dart';
 
 class EmailSignInFormBlocBased extends StatefulWidget {
   EmailSignInFormBlocBased({@required this.bloc});
   final EmailSignInBloc bloc;
 
   static Widget create(BuildContext context) {
-    final auth = Provider.of<BaseAutenticacao>(context, listen: false);
+    final auth = Provider.of<AuthBase>(context, listen: false);
     return Provider<EmailSignInBloc>(
       create: (context) => EmailSignInBloc(auth: auth),
       child: Consumer<EmailSignInBloc>(

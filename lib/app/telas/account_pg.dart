@@ -4,8 +4,8 @@ import 'package:incasa/app/telas/wifi_config/wifi_info_pg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
-import 'package:incasa/app/telas/wifi_config/wifi_manager.dart';
+import 'package:incasa/app/services/autentication.dart';
+//import 'package:incasa/app/telas/wifi_config/wifi_manager.dart';
 //import 'package:incasa/app/servicos/database.dart';
 
 
@@ -31,7 +31,7 @@ class _AccountPgState extends State<AccountPg> {
 
  Future<void> _signOut(BuildContext context) async {
    try {
-     final auth = Provider.of<BaseAutenticacao>(context, listen: false);
+     final auth = Provider.of<AuthBase>(context, listen: false);
      await auth.signOut();
    } catch (e) {
      print(e.toString());
@@ -148,7 +148,7 @@ class _AccountPgState extends State<AccountPg> {
                                       shape: CircleBorder(),
                                       onPressed: () {Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => WifiManager(page: index)),
+                                        MaterialPageRoute(builder: (context) => WifiInform()),
                                       );},
                                     ),
                                   ],

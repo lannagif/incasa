@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HeaderInfo with ChangeNotifier{
 
   String _nameUser = "morador(a)";
-  //Icon _icon;
 
   String get nameUser => _nameUser;
 
@@ -13,6 +12,7 @@ class HeaderInfo with ChangeNotifier{
     notifyListeners();
   }
 
+  /*
   List<String> _dispositivos = [];
 
   List<String> get dispositivos {
@@ -22,6 +22,7 @@ class HeaderInfo with ChangeNotifier{
     _dispositivos.add(element);
     notifyListeners();
   }
+  */
 
   void salvarUserName(String userName) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/services/autentication.dart';
 
 class LoginButton extends StatelessWidget {
 
@@ -7,7 +7,7 @@ class LoginButton extends StatelessWidget {
   final Color fontColor;
   final String logo;
   final String text;
-  final BaseAutenticacao metodo;
+  final AuthBase metodo;
   final PageController controller;
 
   LoginButton(this.color, this.fontColor, this.logo, this.text, this.metodo, this.controller);

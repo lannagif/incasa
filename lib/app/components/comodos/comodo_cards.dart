@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/const.dart';
 
@@ -133,4 +134,4 @@ class ComodoCard extends StatelessWidget {
       },
     );
   }
-}
+}*/

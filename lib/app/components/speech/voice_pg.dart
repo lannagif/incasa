@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/speech/speech_pg.dart';
 import 'package:incasa/app/components/title_with_add_button.dart';
-import 'package:incasa/app/components/comodos/comodo_cards.dart';
 
 
-class BodyComodos extends StatelessWidget {
+class VoiceMode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 

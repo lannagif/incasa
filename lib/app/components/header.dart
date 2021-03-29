@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
-import 'package:incasa/app/telas/account_pg.dart';
+//import 'package:incasa/app/telas/account_pg.dart';
 import 'package:provider/provider.dart';
 
 import 'header_info.dart';

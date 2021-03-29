@@ -7,7 +7,7 @@ import 'package:incasa/app/telas/email_login_pgs/sign_in_button.dart';
 import 'package:incasa/app/telas/email_login_pgs/social_sign_in_button.dart';
 import 'package:incasa/app/components/show_exception_alert_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/services/autentication.dart';
 import 'package:incasa/app/components/const.dart';
 
 class SignInPage extends StatelessWidget {
@@ -22,7 +22,7 @@ class SignInPage extends StatelessWidget {
   static const Key emailPasswordKey = Key('email-password');
 
   static Widget create(BuildContext context) {
-    final auth = Provider.of<BaseAutenticacao>(context, listen: false);
+    final auth = Provider.of<AuthBase>(context, listen: false);
     return ChangeNotifierProvider<ValueNotifier<bool>>(
       create: (_) => ValueNotifier<bool>(false),
       child: Consumer<ValueNotifier<bool>>(

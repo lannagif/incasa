@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:incasa/app/components/dispositivos/card_dispositivo.dart';
-//import 'package:incasa/app/components/dispositivos/dispositivo_cards.dart';
 import 'package:incasa/app/components/title_with_add_button.dart';
 import 'package:incasa/app/modelos/tipo_dispositivo.dart';
-//import 'package:incasa/app/telas/body_dispositivos/lista_dispositivos.dart';
 import 'package:incasa/app/telas/body_dispositivos/vazio.dart';
-//import 'package:incasa/app/telas/novo_dispositivo_pg.dart';
-import 'package:incasa/app/servicos/database.dart';
+import 'package:incasa/app/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 

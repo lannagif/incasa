@@ -1,6 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:incasa/app/components/comodos/body_comodos.dart';
+import 'package:incasa/app/components/HomePgProvider/home_pg_provider.dart';
+import 'package:incasa/app/components/speech/voice_pg.dart';
 import 'package:incasa/app/components/header_info.dart';
 import 'package:incasa/app/telas/body_dispositivos/body_dispositivo.dart';
 import 'package:incasa/app/components/header.dart';
@@ -10,6 +10,7 @@ import 'package:incasa/app/telas/account_pg.dart';
 
 class HomePg extends StatefulWidget {
 
+
   @override
   _HomePgState createState() => _HomePgState();
 }
@@ -18,13 +19,12 @@ class _HomePgState extends State<HomePg> {
 
   double _panelHeightOpen;
 
-  int index = 0;
+  //int _index = 0;
 
   final focusNode = FocusNode();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Provider.of<HeaderInfo>(context, listen: false).lerUserName();
   }
@@ -45,7 +45,7 @@ class _HomePgState extends State<HomePg> {
           slideDirection: SlideDirection.DOWN,
           borderRadius: radius,
           maxHeight: _panelHeightOpen,
-          collapsed:  HeaderToAccount(size: MediaQuery.of(context).size, page: index),
+          collapsed:  HeaderToAccount(size: MediaQuery.of(context).size, page: Provider.of<HomePgProvider>(context).index),
           panelBuilder: (sc) => panel(
             sc: sc,
           ),
@@ -57,11 +57,12 @@ class _HomePgState extends State<HomePg> {
                   itemCount: 2,
                   itemBuilder: (_, currentIndex){
                     return
-                    currentIndex == 1 ? BodyComodos() : BodyDispositivos();
+                    currentIndex == 1 ? VoiceMode() : BodyDispositivos();
                   },
                     onPageChanged: (indexPage) {
                       this.setState(() {
-                        index = indexPage;
+                        // index = indexPage;
+                        Provider.of<HomePgProvider>(context, listen: false).index = indexPage;
                       });
                     }
                 ),

@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/services/autentication.dart';
 import 'package:incasa/app/telas/email_login_pgs/email_sign_in_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EmailSignInBloc {
   EmailSignInBloc({@required this.auth});
-  final BaseAutenticacao auth;
+  final AuthBase auth;
 
   final _modelSubject =
   BehaviorSubject<EmailSignInModel>.seeded(EmailSignInModel());

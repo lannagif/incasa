@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:incasa/app/telas/email_login_pgs/email_sign_in_model.dart';
 import 'package:incasa/app/telas/email_login_pgs/validators.dart';
-import 'package:incasa/app/servicos/autenticacao.dart';
+import 'package:incasa/app/services/autentication.dart';
 
 class EmailSignInChangeModel with EmailAndPasswordValidators, ChangeNotifier {
   EmailSignInChangeModel({
@@ -12,7 +12,7 @@ class EmailSignInChangeModel with EmailAndPasswordValidators, ChangeNotifier {
     this.isLoading = false,
     this.submitted = false,
   });
-  final BaseAutenticacao auth;
+  final AuthBase auth;
   String email;
   String password;
   EmailSignInFormType formType;

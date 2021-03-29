@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-abstract class BaseAutenticacao {
+abstract class AuthBase {
 
   User get currentUser;
   Stream<User> authStateChanges();
@@ -11,7 +11,7 @@ abstract class BaseAutenticacao {
   Future<void> signOut();
 }
 
-class Auth implements BaseAutenticacao {
+class Auth implements AuthBase {
   final _firebaseAuth = FirebaseAuth.instance;
 
   @override

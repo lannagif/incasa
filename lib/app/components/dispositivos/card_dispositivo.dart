@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/switch_on_off.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:incasa/app/components/const.dart';
-
+import 'package:incasa/app/services/firestore_service.dart';
 
 class CardDispositivo extends StatelessWidget {
 
@@ -17,45 +18,45 @@ class CardDispositivo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Container(
-        height: 150,
-        decoration: BoxDecoration(
-            color: kPrimaryColor,
-            borderRadius: BorderRadius.all(Radius.circular(36)),
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(0,10),
-                blurRadius: 40,
-                color: kTextColor.withOpacity(0.2),
-              ),
-            ]
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                  flex: 2,
-                  child: Image.asset('assets/imgs/lamp.png', height: 110)),
-              Expanded(
-                flex: 4,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //Spacer(),
-                    ListTile(
-
-                      title: Text(dispositivo.tag??''),
-                      subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
-                      onTap: onTap,
-                    ),
-                    //Spacer(),
-                  ]
+          height: 150,
+          decoration: BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(36)),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0,10),
+                  blurRadius: 40,
+                  color: kTextColor.withOpacity(0.2),
                 ),
-              ),
-              Expanded(flex: 2,
-                  child: SwitchOnOff()),
-              /*Expanded(
+              ]
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                    flex: 2,
+                    child: Image.asset('assets/imgs/lamp.png', height: 110)),
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        //Spacer(),
+                        ListTile(
+
+                          title: Text(dispositivo.tag??''),
+                          subtitle: Text(dispositivo.tipo+' '+dispositivo.comodo??''),
+                          onTap: onTap,
+                        ),
+                        //Spacer(),
+                      ]
+                  ),
+                ),
+                Expanded(flex: 2,
+                    child: SwitchOnOff()),
+                /*Expanded(
                 flex: 4,
                 child: SwitchListTile(
                   title: Text(dispositivo.tag??''),
@@ -63,11 +64,142 @@ class CardDispositivo extends StatelessWidget {
                   value: ,
                 ),
               ),*/
-            ],
-          ),
-        )
+              ],
+            ),
+          )
       ),
     );
   }
 }
 
+
+
+
+/*
+class CardDispositivo extends StatefulWidget {
+  const CardDispositivo({Key key, @required this.dispositivo, this.onTap})
+      : super(key: key);
+
+  final Dispositivo dispositivo;
+  final VoidCallback onTap;
+
+  @override
+  _CardDispositivoState createState() => _CardDispositivoState();
+}
+
+class _CardDispositivoState extends State<CardDispositivo> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('tipoDispositivo').snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            if(FirestoreService.instance.collectionStream(path: null, builder: null).where((event) => false)){
+              return Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  height: 150,
+                  decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(36)),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 10),
+                          blurRadius: 40,
+                          color: kTextColor.withOpacity(0.2),
+                        ),
+                      ]),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child:
+                          Image.asset('assets/imgs/lamp.png', height: 110),
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //Spacer(),
+                                ListTile(
+                                  title: Text(widget.dispositivo.tag ?? ''),
+                                  subtitle: Text(widget.dispositivo.tipo +
+                                      ' ' +
+                                      widget.dispositivo.comodo ??
+                                      ''),
+                                  onTap: widget.onTap,
+                                ),
+                                //Spacer(),
+                              ]),
+                        ),
+                        Expanded(flex: 2, child: SwitchOnOff()),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+            if(){
+              return Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  height: 150,
+                  decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(36)),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 10),
+                          blurRadius: 40,
+                          color: kTextColor.withOpacity(0.2),
+                        ),
+                      ]),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child:
+                          Image.asset('assets/imgs/curtain.png', height: 110),
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //Spacer(),
+                                ListTile(
+                                  title: Text(widget.dispositivo.tag ?? ''),
+                                  subtitle: Text(widget.dispositivo.tipo +
+                                      ' ' +
+                                      widget.dispositivo.comodo ??
+                                      ''),
+                                  onTap: widget.onTap,
+                                ),
+                                //Spacer(),
+                              ]),
+                        ),
+                        Expanded(flex: 2, child: SwitchOnOff()),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+          } else {
+            print('erro');
+          }
+          return CircularProgressIndicator();
+        });
+  }
+
+  tipo() async {
+
+  }
+}*/
