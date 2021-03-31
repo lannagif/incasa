@@ -70,7 +70,7 @@ class _WifiInformState extends State<WifiInform> {
     }
 
     if (Platform.isAndroid) {
-      print('Checking Android permissions');
+      print('Verificando permissões do Android');
       var status = await Permission.location.status;
       // Blocked?
       if (status.isUndetermined || status.isDenied || status.isRestricted) {
@@ -79,12 +79,12 @@ class _WifiInformState extends State<WifiInform> {
             .request()
             .isGranted) {
           // Either the permission was already granted before or the user just granted it.
-          print('Location permission granted');
+          print('Permissão de Localização concedida');
         } else {
-          print('Location permission not granted');
+          print('Permissão de Localização negada');
         }
       } else {
-        print('Permission already granted (previous execution?)');
+        print('Permissão de Localização previamente concedida');
       }
     }
     return updateConnectionStatus(result);
@@ -97,7 +97,7 @@ class _WifiInformState extends State<WifiInform> {
         backgroundColor: kPrimaryColor,
         appBar: AppBar(
           elevation: 0,
-          title: Text(
+          /*title: Text(
             'Configurações de Rede',
             style: Theme
                 .of(context)
@@ -107,7 +107,7 @@ class _WifiInformState extends State<WifiInform> {
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
-          ),
+          ),*/
         ),
         body: Padding(
           padding: const EdgeInsets.only(top: 20.0),
@@ -119,6 +119,7 @@ class _WifiInformState extends State<WifiInform> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
+                    flex: 1,
                     child: Container(
                       child: Text(
                         'Você está conectado no Wifi:',
@@ -138,6 +139,7 @@ class _WifiInformState extends State<WifiInform> {
               ),
               SizedBox(height: 20,),
               Expanded(
+                flex: 1,
                 child: Container(
                   width: MediaQuery
                       .of(context)
@@ -153,10 +155,10 @@ class _WifiInformState extends State<WifiInform> {
                       margin: EdgeInsets.only(bottom: 5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(36),
-                          color: Colors.yellow[100],
+                          color: Colors.black,
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey[700],
+                              color: Colors.black45,
                               offset: Offset(0, 1),
                               blurRadius: 38,
                             )
@@ -169,7 +171,7 @@ class _WifiInformState extends State<WifiInform> {
                               .textTheme
                               .headline6
                               .copyWith(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -180,9 +182,10 @@ class _WifiInformState extends State<WifiInform> {
               ),
               SizedBox(height: 20,),
               Expanded(
+                flex: 1,
                 child: Container(
                   child: Text(
-                    'Para configurar a realizar\n o pareamento das redes,\n insira a senha da sua rede Wifi.',
+                    'Para realizar o pareamento\n das redes, insira a senha\n da sua rede Wifi.',
                     style: Theme
                         .of(context)
                         .textTheme
@@ -196,24 +199,43 @@ class _WifiInformState extends State<WifiInform> {
                 ),
               ),
               SizedBox(height: 20,),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-                  child: Center(
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 25.0, right: 25.0),
                     child: Form(
                       key: _formKey,
-
                       child: TextFormField(
+                        textAlign: TextAlign.center,
                         style: Theme
                             .of(context)
                             .textTheme
                             .headline5
                             .copyWith(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
-                        decoration: const InputDecoration(
-                          hintText: 'Senha da rede local',
+                        decoration: InputDecoration(
+                          fillColor: Colors.white60,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide: BorderSide(width: 1,color: kPrimaryColor),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide: BorderSide(width: 1,color: kPrimaryColor),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide: BorderSide(width: 1,color: kPrimaryColor),
+                          ),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide: BorderSide(width: 1,color: kPrimaryColor),
+                          ),
+                          //hintText: 'Senha da rede local',
                           hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
                         ),
                         onSaved: (value) => Provider.of<WifiInfoSsidPwd>(context, listen: false).pwd = value,//(value) => pwd = value,
@@ -223,13 +245,23 @@ class _WifiInformState extends State<WifiInform> {
                   ),
                 ),
               ),
-              Container(
-                child: RaisedButton(
-                  color: Colors.black,
-                  //textColor: kPrimaryColor,
-                  child: Icon(Icons.arrow_forward),
-                  onPressed: () =>
-                    valor(),
+              //SizedBox(height: 20),
+              Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: RaisedButton(
+                        color: Colors.black,
+                        //textColor: kPrimaryColor,
+                        child: Icon(Icons.arrow_forward,
+                        color: kPrimaryColor,),
+                        onPressed: () =>
+                          valor(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Spacer(),

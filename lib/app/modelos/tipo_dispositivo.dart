@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:incasa/app/components/macMask.dart';
 import 'package:incasa/app/components/show_alert_dialog.dart';
 import 'package:incasa/app/components/show_exception_alert_dialog.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +9,7 @@ import 'package:flutter/rendering.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:incasa/app/modelos/dispositivo_modelo.dart';
 import 'package:incasa/app/services/database.dart';
-import 'package:masked_text/masked_text.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AddDisp extends StatefulWidget {
 
@@ -44,6 +46,11 @@ class _AddDispState extends State<AddDisp> {
   var selectedDispositivo;
   var selectedComodo;
 
+  final _macMask = TextEditingController();
+  bool _ok = false;
+  //var controller = MaskTextInputFormatter(mask: 'xx.xx.xx.xx.xx.xx');
+
+
   @override
   void initState(){
     super.initState();
@@ -75,6 +82,15 @@ class _AddDispState extends State<AddDisp> {
       // context de AddDisp
       //final database = Provider.of<Database>(context, listen: false);
       try {
+        /*RegExp validaMac = RegExp('^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\$');
+        Iterable<Match> matches = validaMac.allMatches(_macMask.text);
+        setState(() {
+          if(matches.length == 0){
+            _ok = false;
+          } else {
+            _ok = true;
+          }
+        });*/
         final dispositivos = await widget.database.dispositivoStream().first;
         final allTags = dispositivos.map((dispositivo) => dispositivo.tag).toList();
         if(widget.dispositivo != null){
@@ -89,7 +105,7 @@ class _AddDispState extends State<AddDisp> {
           );
         } else{
           final id = widget.dispositivo?.id ?? documentIDFromCurrentDate();
-          final dispositivo = Dispositivo(id: id, tipo: _tipo, comodo: _comodo, tag: _tag, estado: _estado);
+          final dispositivo = Dispositivo(id: id, tipo: _tipo, comodo: _comodo, tag: _tag, mac: _mac, estado: _estado);
           await widget.database.setDispositivo(dispositivo);
           Navigator.of(context).pop();
         }
@@ -279,6 +295,11 @@ class _AddDispState extends State<AddDisp> {
       ),
 
         TextFormField(
+          controller: _macMask,
+          // inputFormatters: <TextInputFormatter>[
+          //   LengthLimitingTextInputFormatter(12),
+          //   FilteringTextInputFormatter.allow(RegExp('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})\$')),
+          // ],
           style: Theme.of(context).textTheme.headline5.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -308,7 +329,7 @@ class _AddDispState extends State<AddDisp> {
           fontWeight: FontWeight.bold,
         ),
         decoration: const InputDecoration(
-          hintText: 'i.e. Lâmpada 1 | Cortina da Sala | etc',
+          hintText: 'Lâmpada 1 | Cortina da Sala | etc',
           hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
         ),
         initialValue: _tag,
@@ -366,11 +387,6 @@ class _AddDispState extends State<AddDisp> {
     );
   }
 
-  enderecoMacMask(){
-    MaskedTextField(
-      //maskedTextFieldController: _textController,
-      mask: 'xx:xx:xx:xx:xx:xx',
-      maxLength: 14,
-    );
-  }
+
+
 }

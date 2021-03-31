@@ -155,7 +155,7 @@ class _AccountPgState extends State<AccountPg> {
                                 ),
                               ),
                               SizedBox(height:30,),
-                              Container(
+                              /*Container(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -176,7 +176,7 @@ class _AccountPgState extends State<AccountPg> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 30,),
+                              SizedBox(height: 30,),*/
                               Container(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,

@@ -99,13 +99,13 @@ class _WifiInformEspState extends State<WifiInformEsp> {
           backgroundColor: kPrimaryColor,
           appBar: AppBar(
             elevation: 0,
-            title: Text(
+            /*title: Text(
               'Configurações de Rede',
               style: Theme.of(context).textTheme.headline5.copyWith(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
-            ),
+            ),*/
           ),
           body: Padding(
             padding: const EdgeInsets.only(top: 20.0),
@@ -117,6 +117,7 @@ class _WifiInformEspState extends State<WifiInformEsp> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 1,
                       child: Container(
                         child: Text(
                           'Conecte-se na rede:',
@@ -132,6 +133,7 @@ class _WifiInformEspState extends State<WifiInformEsp> {
                 ),
                 SizedBox(height: 20,),
                 Expanded(
+                  flex: 1,
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.8,
@@ -141,10 +143,10 @@ class _WifiInformEspState extends State<WifiInformEsp> {
                         margin: EdgeInsets.only(bottom: 5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(36),
-                            color: Colors.yellow[100],
+                            color: Colors.black,
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey[700],
+                                color: Colors.black45,
                                 offset: Offset(0, 1),
                                 blurRadius: 38,
                               )
@@ -153,7 +155,7 @@ class _WifiInformEspState extends State<WifiInformEsp> {
                           child: Text(
                             'InGateway',
                             style: Theme.of(context).textTheme.headline6.copyWith(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -164,9 +166,10 @@ class _WifiInformEspState extends State<WifiInformEsp> {
                 ),
                 SizedBox(height: 20,),
                 Expanded(
+                  flex: 1,
                   child: Container(
                     child: Text(
-                      'Clique em OK quando estiver conectado em InGateway.',
+                      'Clique em OK quando estiver\n conectado em InGateway',
                       style: Theme.of(context).textTheme.headline6.copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -176,18 +179,26 @@ class _WifiInformEspState extends State<WifiInformEsp> {
                   ),
                 ),
                 SizedBox(height: 20,),
-                Container(
-                  child: RaisedButton(
-                    color: Colors.black,
-                    //textColor: kPrimaryColor,
-                    child: Text(
-                      'Ok',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: kPrimaryColor,
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: RaisedButton(
+                          color: Colors.black,
+                          //textColor: kPrimaryColor,
+                          child: Text(
+                            'Ok',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: kPrimaryColor,
+                            ),
+                          ),
+                          onPressed: () => _sendToEsp(),//=> MaterialPageRoute(builder: (context) => WifiInformEsp()),
+                        ),
                       ),
-                    ),
-                    onPressed: () => _sendToEsp(),//=> MaterialPageRoute(builder: (context) => WifiInformEsp()),
+                    ],
                   ),
                 ),
                 Spacer(),
@@ -316,7 +327,7 @@ class _WifiInformEspState extends State<WifiInformEsp> {
         } else {
           // If the server did not return a 201 CREATED response,
           // then throw an exception.
-          throw Exception('Failed to load album');
+          throw Exception('Erro');
         }
       }
 }
