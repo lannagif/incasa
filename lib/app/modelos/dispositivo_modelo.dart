@@ -12,7 +12,7 @@ class Dispositivo{
   final String comodo;
   final String tag;
   final String mac;
-  final int estado;
+   int estado;
 
 
 
@@ -41,7 +41,7 @@ class Dispositivo{
       'comodo': comodo,
       'tag': tag,
       'mac': mac,
-      //'estado': estado,
+      'estado': estado,
     };
   }
 }

@@ -41,7 +41,7 @@ class _AddDispState extends State<AddDisp> {
   String _comodo;
   String _tag;
   String _mac;
-  int _estado;
+  int _estado=0;
 
   var selectedDispositivo;
   var selectedComodo;
@@ -295,7 +295,7 @@ class _AddDispState extends State<AddDisp> {
       ),
 
         TextFormField(
-          controller: _macMask,
+          //controller: _macMask,
           // inputFormatters: <TextInputFormatter>[
           //   LengthLimitingTextInputFormatter(12),
           //   FilteringTextInputFormatter.allow(RegExp('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})\$')),

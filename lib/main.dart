@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:incasa/app/components/HomePgProvider/home_pg_provider.dart';
+import 'package:incasa/app/components/dispositivos/estado_dispositivo_provider.dart';
 import 'package:incasa/app/components/const.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:incasa/app/components/header_info.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
            ),
           ChangeNotifierProvider(
             create: (context) => HomePgProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => EstadoDispositivo(),
           ),
           //ChangeNotifierProvider(
           //    create: (context) => WifiInfoSsidPwd(),

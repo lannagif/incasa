@@ -18,8 +18,57 @@ class _SpeechScreenState extends State<SpeechScreen> {
   double _confidence = 0.8;
 
   final Map<String, HighlightedWord> highlights = {
-    'teste': HighlightedWord(
-      onTap: () => print('teste'),
+    'acender': HighlightedWord(
+      onTap: () => print('acender'),
+      textStyle: TextStyle(
+        color: Colors.grey[800],
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    'acenda': HighlightedWord(
+      onTap: () => print('acenda'),
+      textStyle: TextStyle(
+        color: Colors.grey[800],
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    'ligar': HighlightedWord(
+      onTap: () => print('ligar'),
+      textStyle: TextStyle(
+        color: Colors.grey[800],
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    'ligue': HighlightedWord(
+      onTap: () => print('ligue'),
+      textStyle: TextStyle(
+        color: Colors.grey[800],
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    'apagar': HighlightedWord(
+      onTap: () => print('apagar'),
+      textStyle: TextStyle(
+        color: Colors.grey[800],
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    'apague': HighlightedWord(
+      onTap: () => print('apague'),
+      textStyle: TextStyle(
+        color: Colors.grey[800],
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    'desligue': HighlightedWord(
+      onTap: () => print('desligue'),
+      textStyle: TextStyle(
+        color: Colors.grey[800],
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    'desligar': HighlightedWord(
+      onTap: () => print('desligar'),
       textStyle: TextStyle(
         color: Colors.grey[800],
         fontWeight: FontWeight.bold,
@@ -103,8 +152,11 @@ class _SpeechScreenState extends State<SpeechScreen> {
         setState(() => _isListening = true);
         _speechToText.listen(
           onResult: (val) => setState((){
-            _text.length > 0 ? _text[0] : '';
-            _text = val.recognizedWords;
+            if(val.recognizedWords != ''){
+              _text = val.recognizedWords;
+            }
+            //_text.length > 0 ? _text[0] : '';
+            //_text = val.recognizedWords;
             if(val.hasConfidenceRating && val.confidence > 0){
               _confidence = val.confidence;
             }
