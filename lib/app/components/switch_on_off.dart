@@ -17,6 +17,7 @@ class SwitchOnOff extends StatefulWidget {
   _SwitchOnOffState createState() => _SwitchOnOffState();
 }
 
+
 class _SwitchOnOffState extends State<SwitchOnOff> {
 
   //Dispositivo dispositivo;
@@ -28,24 +29,27 @@ class _SwitchOnOffState extends State<SwitchOnOff> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(width: 30,),
-        Transform.scale(
-          scale: 1.8,
-          child: GFToggle(
-            onChanged: (estado){
-              widget.dispositivo.estado = estado ? 1 : 0;
-              database.setDispositivo(widget.dispositivo);
-            },
-            value:  widget.dispositivo.estado ?? false,
-            type: GFToggleType.custom,
-            disabledText: "",
-            enabledText: "",
-            enabledTrackColor: Colors.yellow[100],
-            disabledTrackColor: Colors.black45,
-            enabledThumbColor: Colors.white,
-            disabledThumbColor: Colors.black,
-            boxShape: BoxShape.rectangle,
-            borderRadius: BorderRadius.zero,
-            duration: Duration(milliseconds: 1),
+        Expanded(
+          flex: 1,
+          child: Transform.scale(
+            scale: 1.8,
+            child: GFToggle(
+              onChanged: (estado){
+                widget.dispositivo.estado = estado ? 1 : 0;
+                database.setDispositivo(widget.dispositivo);
+              },
+              value:  widget.dispositivo.estado ?? false,
+              type: GFToggleType.custom,
+              disabledText: "",
+              enabledText: "",
+              enabledTrackColor: Colors.yellow[100],
+              disabledTrackColor: Colors.black45,
+              enabledThumbColor: Colors.white,
+              disabledThumbColor: Colors.black,
+              boxShape: BoxShape.rectangle,
+              borderRadius: BorderRadius.zero,
+              duration: Duration(milliseconds: 1),
+            ),
           ),
         ),
       ],

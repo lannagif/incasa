@@ -107,6 +107,7 @@ class _AddDispState extends State<AddDisp> {
           final id = widget.dispositivo?.id ?? documentIDFromCurrentDate();
           final dispositivo = Dispositivo(id: id, tipo: _tipo, comodo: _comodo, tag: _tag, mac: _mac, estado: _estado);
           await widget.database.setDispositivo(dispositivo);
+          //await widget.database.
           Navigator.of(context).pop();
         }
       } on FirebaseException catch (e) {
